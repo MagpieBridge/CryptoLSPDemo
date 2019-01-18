@@ -11,17 +11,19 @@ import magpiebridge.core.Kind;
 public class CryptoResult implements AnalysisResult {
 	private final Kind kind;
 	private final Position position;
-	private final String text;
+	private final String message;
 	private final Iterable<Pair<Position, String>> related;
 	private final DiagnosticSeverity severity;
-	
-	public CryptoResult(Kind kind, Position pos, String text, Iterable<Pair<Position, String>> relatedInfo,
-			DiagnosticSeverity severity) {
+	private final String repair;
+
+	public CryptoResult(Kind kind, Position pos, String msg, Iterable<Pair<Position, String>> relatedInfo,
+			DiagnosticSeverity severity, String repair) {
 		this.kind = kind;
 		this.position = pos;
-		this.text = text;
+		this.message = msg;
 		this.related = relatedInfo;
 		this.severity = severity;
+		this.repair = repair;
 	}
 
 	public Kind kind() {
@@ -29,8 +31,7 @@ public class CryptoResult implements AnalysisResult {
 	}
 
 	public String toString(boolean useMarkdown) {
-		// TODO Auto-generated method stub
-		return null;
+		return message;
 	}
 
 	public Position position() {
@@ -46,7 +47,7 @@ public class CryptoResult implements AnalysisResult {
 	}
 
 	public String repair() {
-		return text;
+		return repair;
 	}
 
 }

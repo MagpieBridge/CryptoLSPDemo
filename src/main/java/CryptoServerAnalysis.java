@@ -1,5 +1,3 @@
-import java.io.File;
-import java.net.URI;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +6,7 @@ import com.ibm.wala.classLoader.Module;
 import de.upb.soot.core.SootClass;
 import de.upb.soot.frontends.java.JimpleConverter;
 import de.upb.soot.frontends.java.WalaClassLoader;
+import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.MagpieServer;
 import magpiebridge.core.ServerAnalysis;
 import soot.PackManager;
@@ -28,13 +27,15 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
 	public void analyze(Collection<Module> files, MagpieServer server) {
 		CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
-		loadSourceCode(server.getSourceCodePath());
+		loadSourceCode(files);
 		runSootPacks(transformer);
+		Collection<AnalysisResult> results = transformer.getAnalysisResults();
+		server.consume(results, source());
 	}
 
-	private void loadSourceCode(String sourceCodePath) {
+	private void loadSourceCode(Collection<Module> files) {
 		// use WALA source-code front end to load classes
-		WalaClassLoader loader = new WalaClassLoader(sourceCodePath);
+		WalaClassLoader loader = new WalaClassLoader(files);
 		List<SootClass> sootClasses = loader.getSootClasses();
 		JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
 		jimpleConverter.convertAllClasses();

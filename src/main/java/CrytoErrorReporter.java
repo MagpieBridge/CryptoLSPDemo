@@ -41,7 +41,7 @@ public class CrytoErrorReporter extends ErrorMarkerListener {
 					// TODO. get relatedInfo from crypto analysis.
 					List<Pair<Position, String>> relatedInfo = Collections.emptyList();
 					CryptoResult res = new CryptoResult(Kind.Diagnostic, position, msg, relatedInfo,
-							DiagnosticSeverity.Error);
+							DiagnosticSeverity.Error,"");
 					results.add(res);
 				}
 			}
