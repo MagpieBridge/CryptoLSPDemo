@@ -1,0 +1,12 @@
+{
+    "extends": "./top-tsconfig",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "lib",
+        "baseUrl": ".",
+        "skipLibCheck": true
+    },
+    "include": [
+        "src"
+    ]
+}
