@@ -21,11 +21,15 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 		this.ruleDirPath = ruleDirPath;
 	}
 
+	@Override
 	public String source() {
 		return "CogniCrypt";
 	}
 
+	@Override
 	public void analyze(Collection<Module> files, MagpieServer server) {
+		// String srcPath = server.getSourceCodePath();
+		// server.logger.logVerbose("analyze "+ srcPath);
 		CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
 		loadSourceCode(files);
 		runSootPacks(transformer);
@@ -33,9 +37,16 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 		server.consume(results, source());
 	}
 
-	private void loadSourceCode(Collection<Module> files) {
+	private void loadSourceCode(Collection<? extends Module> files) {
 		// use WALA source-code front end to load classes
 		WalaClassLoader loader = new WalaClassLoader(files);
+		List<SootClass> sootClasses = loader.getSootClasses();
+		JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
+		jimpleConverter.convertAllClasses();
+	}
+
+	private void loadSourceCode(String srcPath) {
+		WalaClassLoader loader = new WalaClassLoader(srcPath);
 		List<SootClass> sootClasses = loader.getSootClasses();
 		JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
 		jimpleConverter.convertAllClasses();
