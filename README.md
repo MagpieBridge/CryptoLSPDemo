@@ -3,7 +3,7 @@
 - check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
 - check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
 - install them with ``mvn install -DskipTests`` 
-- Use crypto-lsp-demo-0.0.1-SNAPSHOT.jar als language server in editors. 
+- Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors. 
 
 
 Run monaco demo
