@@ -10,7 +10,7 @@ Run monaco demo
 - install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build the example  
 - Build crypto server war file with ``mvn war:war``
 - copy ``crypto-lsp-demo-0.0.1-SNAPSHOT.war`` to ``tomcat\webapps`` and change the name to ``crypto-lsp-demo.war`` 
-- start ``tomcat\bin\startup.bat or tomcat\bin\startup.sh``
+- start ``tomcat\bin\startup.bat`` or ``tomcat\bin\startup.sh``
 - copy ``monaco-example`` to ``minweb\htdocs`` of [minweb](https://sourceforge.net/projects/miniweb/) and start minweb.exe
 - open http://localhost:8000/monaco-example/lib/ in browser
 
