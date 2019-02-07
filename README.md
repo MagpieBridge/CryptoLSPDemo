@@ -9,7 +9,9 @@
 Build war file
 - ``mvn war:war``
 
+
 Run demo
+- install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build  
 - copy crypto-lsp-demo-0.0.1-SNAPSHOT.war to tomcat\webapps
 - start tomcat\bin\startup.bat
 - start minweb.exe
