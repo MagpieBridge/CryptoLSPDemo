@@ -14,4 +14,30 @@ Run monaco demo
 - copy ``monaco-example`` to ``minweb\htdocs`` of [minweb](https://sourceforge.net/projects/miniweb/) and start minweb.exe
 - open http://localhost:8000/monaco-example/lib/ in browser
 
+Run Sublime demo
+- Install package control in Command Palette (windows)
+- Select and intall package LSP in package control (windows)
+- Paste the configuration into Preferences/Package Settings/LSP/Setting 
+
+``
+{
+  "log_debug": true,
+
+  "clients": {
+
+  "cognicrypt": {
+  "command": ["C:\\PROGRA~1\\Java\\JDK18~1.0_1\\bin\\java", "-jar", "E:\\Git\\Github\\crypto-lsp-demo\\target\\crypto-lsp-demo-0.0.1-SNAPSHOT.jar"], 
+  "enabled": true,
+  "languageId": "java",
+  "scopes": ["source.java"],
+  "syntaxes": ["Packages/Java/Java.sublime-syntax"], 
+  }
+}
+
+}``
+
+- Select "Setup Language Server" in Command Palette and enable "Globally"
+- Restart Sublime and open an example 
+
+
 
