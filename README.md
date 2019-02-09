@@ -19,7 +19,7 @@ Run Sublime demo
 - Select and intall package LSP in Package Control (windows)
 - Paste the following configuration into ``Preferences/Package Settings/LSP/Setting`` 
 	
-~~~~
+```
 {
   "log_debug": true,
 
@@ -34,7 +34,7 @@ Run Sublime demo
   }
 }
 	
-~~~~
+```
 
 - Select ``Setup Language Server`` in ``Command Palette`` and enable ``Globally``
 - Restart Sublime and open an example 
