@@ -15,9 +15,9 @@ Run monaco demo
 - open http://localhost:8000/monaco-example/lib/ in browser
 
 Run Sublime demo
-- Install ``Package Control`` in ``Command Palette`` (windows)
-- Select and intall package LSP in Package Control (windows)
-- Paste the following configuration into ``Preferences/Package Settings/LSP/Setting`` 
+- install ``Package Control`` in ``Command Palette`` (windows)
+- select and intall package LSP in Package Control (windows)
+- paste the following configuration into ``Preferences/Package Settings/LSP/Setting`` 
 	
 ```
 {
@@ -36,8 +36,8 @@ Run Sublime demo
 	
 ```
 
-- Select ``Setup Language Server`` in ``Command Palette`` and enable ``Globally``
-- Restart Sublime and open an example 
+- select ``Setup Language Server`` in ``Command Palette`` and enable ``Globally``
+- restart Sublime and open an example 
 
 
 
