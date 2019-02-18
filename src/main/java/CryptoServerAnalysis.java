@@ -1,5 +1,6 @@
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.ibm.wala.classLoader.Module;
 
@@ -7,6 +8,7 @@ import de.upb.soot.core.SootClass;
 import de.upb.soot.frontends.java.JimpleConverter;
 import de.upb.soot.frontends.java.WalaClassLoader;
 import magpiebridge.core.AnalysisResult;
+import magpiebridge.core.JavaProjectService;
 import magpiebridge.core.MagpieServer;
 import magpiebridge.core.ServerAnalysis;
 import soot.PackManager;
@@ -14,6 +16,8 @@ import soot.Transform;
 import soot.Transformer;
 
 public class CryptoServerAnalysis implements ServerAnalysis {
+
+	private static final Logger LOG = Logger.getLogger("main");
 
 	private String ruleDirPath;
 
@@ -28,8 +32,17 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
 	@Override
 	public void analyze(Collection<Module> files, MagpieServer server) {
+
 		// String srcPath = server.getSourceCodePath();
 		// server.logger.logVerbose("analyze "+ srcPath);
+		JavaProjectService ps = (JavaProjectService) server.getProjectService("java");
+		
+		LOG.info("java project root path" + ps.getRootPath());
+		
+		LOG.info("java project source path" + ps.getSourcePath());
+
+		LOG.info("java project class path" + ps.getClassPath());
+		
 		CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
 		loadSourceCode(files);
 		runSootPacks(transformer);
