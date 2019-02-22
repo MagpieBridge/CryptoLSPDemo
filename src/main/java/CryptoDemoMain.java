@@ -4,7 +4,7 @@ import magpiebridge.core.MagpieServer;
 
 public class CryptoDemoMain {
 	public static void main(String... args) {
-		String ruleDirPath = "E:/Git/Github/crypto-lsp-demo/src/test/resources";
+		String ruleDirPath = "/Users/dolby/git/CryptoLSPDemo/src/test/resources";
 		// String ruleDirPath = args[0];
 		System.out.println("server started");
 		MagpieServer server = new MagpieServer();
