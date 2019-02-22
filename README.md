@@ -3,9 +3,9 @@
 - install with: 
 	-- ``gradlew build -x tests``
 	-- ``gradlew install -Dmaven.repo.local=path\to\your\local\m2``
-2. check out "develop" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
+2. check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
 - install with ``mvn install -DskipTests`` 
-3. check out "develop" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
+3. check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
 - install with ``mvn install -DskipTests`` 
 4. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
 
