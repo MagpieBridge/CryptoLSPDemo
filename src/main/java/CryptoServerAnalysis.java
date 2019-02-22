@@ -8,7 +8,6 @@ import de.upb.soot.core.SootClass;
 import de.upb.soot.frontends.java.JimpleConverter;
 import de.upb.soot.frontends.java.WalaClassLoader;
 import magpiebridge.core.AnalysisResult;
-import magpiebridge.core.JavaProjectService;
 import magpiebridge.core.MagpieServer;
 import magpiebridge.core.ServerAnalysis;
 import soot.PackManager;
@@ -35,19 +34,30 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
 		// String srcPath = server.getSourceCodePath();
 		// server.logger.logVerbose("analyze "+ srcPath);
-		JavaProjectService ps = (JavaProjectService) server.getProjectService("java");
-		
-		LOG.info("java project root path" + ps.getRootPath());
-		
-		LOG.info("java project source path" + ps.getSourcePath());
+//		if (ps != null) {
+//		JavaProjectService ps = (JavaProjectService) server.getProjectService("java");
+//			LOG.info("java project root path" + ps.getRootPath());
+//			LOG.info("java project source path" + ps.getSourcePath());
+//			LOG.info("java project class path" + ps.getClassPath());
+//		}
 
-		LOG.info("java project class path" + ps.getClassPath());
-		
 		CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
 		loadSourceCode(files);
 		runSootPacks(transformer);
 		Collection<AnalysisResult> results = transformer.getAnalysisResults();
 		server.consume(results, source());
+	}
+	
+	public void analyze(String srcPath) 
+	{
+		CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
+		loadSourceCode(srcPath);
+		runSootPacks(transformer);
+		Collection<AnalysisResult> results = transformer.getAnalysisResults();
+		for(AnalysisResult re: results)
+		{
+			System.err.println(re.toString());
+		}
 	}
 
 	private void loadSourceCode(Collection<? extends Module> files) {
