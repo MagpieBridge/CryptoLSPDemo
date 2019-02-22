@@ -55,6 +55,12 @@
 			<groupId>de.fraunhofer.iem</groupId>
 			<artifactId>CryptoAnalysis</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
+			<exclusions>
+			  <exclusion>
+			    <groupId>org.eclipse.core</groupId>
+			    <artifactId>runtime</artifactId>
+			  </exclusion>
+			</exclusions> 
 		</dependency>
 		<!-- eclipse lsp4j websocket -->
 		<dependency>
