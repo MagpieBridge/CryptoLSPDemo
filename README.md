@@ -7,7 +7,7 @@
 - install with ``mvn install -DskipTests`` 
 3. check out "develop" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
 - install with ``mvn install -DskipTests`` 
-4. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors. 
+4. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
 
 
 Run monaco demo
