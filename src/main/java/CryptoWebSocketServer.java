@@ -11,7 +11,7 @@ public class CryptoWebSocketServer extends LSPWebSocketServer<MagpieServer> {
 
 	public CryptoWebSocketServer() {
 		super(() -> {
-			String ruleDirPath = "E:/Git/Github/crypto-lsp-demo/src/test/resources";
+			String ruleDirPath = "E:/Git/Github/magpie/crypto-lsp-demo/src/test/resources";
 			MagpieServer server = new MagpieServer();
 			server.addAnalysis("java", new CryptoServerAnalysis(ruleDirPath));
 			return server;

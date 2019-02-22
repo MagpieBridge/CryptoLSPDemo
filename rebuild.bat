@@ -5,9 +5,9 @@ set cryptoRepo=E:\Git\Github\magpie\crypto-lsp-demo
 set tomacatBin=D:\apache-tomcat-9.0.13\bin
 set tomacatWebapps=D:\apache-tomcat-9.0.13\webapps
 
-rm echo build soot-reloaded
-rm set "cmd1=mvn -f %sootRepo% install"
-rm call %cmd1%
+rem echo build soot-reloaded
+rem set "cmd1=mvn -f %sootRepo% install"
+rem call %cmd1%
 
 echo build magpieBridge
 set "cmd2=mvn -f %magpieRepo% install"
