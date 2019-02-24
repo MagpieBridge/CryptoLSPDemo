@@ -11,7 +11,7 @@
 - install with ``mvn install -DskipTests`` 
 5. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
 
-Run Eclipse demo
+## Run Eclipse demo
 - install lsp4e - http://download.eclipse.org/lsp4e/releases/latest/ 
 - create new launch configuratio called crytoLSP: 
 
@@ -32,7 +32,7 @@ Run Eclipse demo
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS1.PNG" width="500">
 
 
-Run monaco demo
+## Run monaco demo
 - install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build the example  
 - build crypto server war file with ``mvn war:war``
 - copy ``crypto-lsp-demo-0.0.1-SNAPSHOT.war`` to ``tomcat\webapps`` and change the name to ``crypto-lsp-demo.war`` 
@@ -42,7 +42,7 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 - copy ``monaco-example`` to ``minweb\htdocs`` of [minweb](https://sourceforge.net/projects/miniweb/) and start minweb.exe
 - open http://localhost:8000/monaco-example/lib/ in browser
 
-Run Sublime demo
+## Run Sublime demo
 - install ``Package Control`` in ``Command Palette`` (windows)
 - select and intall package LSP in Package Control (windows)
 - paste the following configuration into ``Preferences/Package Settings/LSP/Setting`` 
