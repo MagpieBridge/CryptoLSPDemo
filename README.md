@@ -17,9 +17,9 @@ Run Eclipse demo
 
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig0.PNG" width="500">
 
-- set up in Main ->Location ``PATH\\TO\\Java8JDK\\bin\java.exe``
+- set up in Main ->Location ``PATH\TO\Java8JDK\bin\java.exe``
 - set up in Main ->Arguments for java: 
-``-Duser.project=PATH\\TO\\crypto-lsp-demo -jar PATH\\TO\\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
+``-Duser.project=PATH\TO\crypto-lsp-demo -jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
 
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig.PNG" width="500">
 
@@ -36,6 +36,7 @@ Run monaco demo
 - install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build the example  
 - build crypto server war file with ``mvn war:war``
 - copy ``crypto-lsp-demo-0.0.1-SNAPSHOT.war`` to ``tomcat\webapps`` and change the name to ``crypto-lsp-demo.war`` 
+- configure JVM option for tomcat: add this line ``set JAVA_OPTS="-Duser.project=E:PATH\TO\crypto-lsp-deme"`` to ``tomcat\bin\catalina.bat`` (tested for tomcat-9.0.13)
 - start ``tomcat\bin\startup.bat`` or ``tomcat\bin\startup.sh``
 - copy ``monaco-example`` to ``minweb\htdocs`` of [minweb](https://sourceforge.net/projects/miniweb/) and start minweb.exe
 - open http://localhost:8000/monaco-example/lib/ in browser
