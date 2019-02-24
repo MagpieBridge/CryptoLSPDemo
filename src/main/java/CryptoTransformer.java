@@ -1,19 +1,11 @@
+import com.google.common.collect.Lists;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.Lists;
-
-import boomerang.preanalysis.BoomerangPretransformer;
-import crypto.Utils;
-import crypto.HeadlessCryptoScanner.CG;
-import crypto.analysis.CrySLResultsReporter;
-import crypto.analysis.CryptoScanner;
-import crypto.rules.CryptSLRule;
-import crypto.rules.CryptSLRuleReader;
-import magpiebridge.core.AnalysisResult;
 import soot.G;
 import soot.Scene;
 import soot.SceneTransformer;
@@ -23,27 +15,41 @@ import soot.jimple.toolkits.ide.icfg.BiDiInterproceduralCFG;
 import soot.jimple.toolkits.ide.icfg.JimpleBasedInterproceduralCFG;
 import soot.options.Options;
 
+import boomerang.preanalysis.BoomerangPretransformer;
+import crypto.HeadlessCryptoScanner.CG;
+import crypto.Utils;
+import crypto.analysis.CrySLResultsReporter;
+import crypto.analysis.CryptoScanner;
+import crypto.rules.CryptSLRule;
+import crypto.rules.CryptSLRuleReader;
+import magpiebridge.core.AnalysisResult;
+
 public class CryptoTransformer extends SceneTransformer {
   private String ruleDir;
-  private CrytoErrorReporter errorReporter;
+  private CryptoErrorReporter errorReporter;
 
   public CryptoTransformer(String ruleDir) {
     this.ruleDir = ruleDir;
     initilizeSootOptions();
-    this.errorReporter = new CrytoErrorReporter();
+    this.errorReporter = new CryptoErrorReporter();
   }
 
   @Override
   protected void internalTransform(String phaseName, Map<String, String> options) {
+    BoomerangPretransformer.v().reset();
     BoomerangPretransformer.v().apply();
     final JimpleBasedInterproceduralCFG icfg = new JimpleBasedInterproceduralCFG(false);
     List<CryptSLRule> rules = getRules();
     final CrySLResultsReporter reporter = new CrySLResultsReporter();
     CryptoScanner scanner = new CryptoScanner() {
+      @Override
+      public BiDiInterproceduralCFG<Unit, SootMethod> icfg() {
+        return icfg;
+      }
 
       @Override
-      public boolean rulesInSrcFormat() {
-        return true;
+      public CrySLResultsReporter getAnalysisListener() {
+        return reporter;
       }
 
       @Override
@@ -52,8 +58,8 @@ public class CryptoTransformer extends SceneTransformer {
       }
 
       @Override
-      public BiDiInterproceduralCFG<Unit, SootMethod> icfg() {
-        return icfg;
+      public boolean rulesInSrcFormat() {
+        return false;
       }
     };
     reporter.addReportListener(errorReporter);

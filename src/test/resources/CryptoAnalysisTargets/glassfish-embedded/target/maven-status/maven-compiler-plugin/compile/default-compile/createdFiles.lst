@@ -1,0 +1,4 @@
+org\glassfish\grizzly\config\ssl\CustomClass.class
+org\glassfish\grizzly\config\ssl\ConcreteSSL.class
+org\glassfish\grizzly\config\ssl\JSSESocketFactory.class
+org\glassfish\grizzly\http\util\StringManager.class

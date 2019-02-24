@@ -47,17 +47,18 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     loadSourceCode(files);
     runSootPacks(transformer);
     Collection<AnalysisResult> results = transformer.getAnalysisResults();
+    for (AnalysisResult re : results) {
+      System.err.println(re.toString());
+    }
     server.consume(results, source());
   }
 
-  public void analyze(String srcPath) {
+  public Collection<AnalysisResult> analyze(String srcPath) {
     CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
     loadSourceCode(srcPath);
     runSootPacks(transformer);
     Collection<AnalysisResult> results = transformer.getAnalysisResults();
-    for (AnalysisResult re : results) {
-      System.err.println(re.toString());
-    }
+    return results;
   }
 
   private void loadSourceCode(Collection<? extends Module> files) {

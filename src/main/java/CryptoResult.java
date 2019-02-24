@@ -28,10 +28,6 @@ public class CryptoResult implements AnalysisResult {
     return this.kind;
   }
 
-  public String toString(boolean useMarkdown) {
-    return message;
-  }
-
   public Position position() {
     return position;
   }
@@ -46,6 +42,16 @@ public class CryptoResult implements AnalysisResult {
 
   public String repair() {
     return repair;
+  }
+
+  public String toString(boolean useMarkdown) {
+    return message;
+  }
+
+  @Override
+  public String toString() {
+    return "CryptoResult [kind=" + kind + ", position=" + position + ", message=" + message + ", related=" + related
+        + ", severity=" + severity + ", repair=" + repair + "]";
   }
 
 }

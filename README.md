@@ -5,10 +5,16 @@
 	-- ``gradlew install -Dmaven.repo.local=path\to\your\local\m2``
 2. check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
 - install with ``mvn install -DskipTests`` 
-3. check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
+3. check out "master" branch from CryptoAnalysis https://github.com/MagpieBridge/CryptoAnalysis.git
+- install with  ``mvn install -DskipTests`` 
+4. check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
 - install with ``mvn install -DskipTests`` 
-4. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
+5. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
 
+Run Eclipse demo
+- install lsp4e - http://download.eclipse.org/lsp4e/releases/latest/ 
+- create new program configuration: 
+	``-Duser.project=PATH\\TO\\crypto-lsp-demo -jar PATH\\TO\\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
 
 Run monaco demo
 - install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build the example  
@@ -29,7 +35,7 @@ Run Sublime demo
 
   "clients": {
     "cognicrypt": {
-    "command": ["C:\\PROGRA~1\\Java\\JDK18~1.0_1\\bin\\java", "-jar", "E:\\Git\\Github\\crypto-lsp-demo\\target\\crypto-lsp-demo-0.0.1-SNAPSHOT.jar"], 
+    "command": ["C:\\PROGRA~1\\Java\\JDK18~1.0_1\\bin\\java", "-Duser.project=PATH\\TO\\crypto-lsp-demo", "-jar", "PATH\\TO\\crypto-lsp-demo\\target\\crypto-lsp-demo-0.0.1-SNAPSHOT.jar"], 
     "enabled": true,
     "languageId": "java",
     "scopes": ["source.java"],
