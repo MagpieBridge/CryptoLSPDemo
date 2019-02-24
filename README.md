@@ -13,8 +13,24 @@
 
 Run Eclipse demo
 - install lsp4e - http://download.eclipse.org/lsp4e/releases/latest/ 
-- create new program configuration: 
-	``-Duser.project=PATH\\TO\\crypto-lsp-demo -jar PATH\\TO\\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
+- create new launch configuratio called crytoLSP: 
+
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig0.PNG" width="250">
+
+- set up in Main ->Location ``PATH\\TO\\Java8JDK\\bin\java.exe``
+- set up in Main ->Arguments for java: 
+``-Duser.project=PATH\\TO\\crypto-lsp-demo -jar PATH\\TO\\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
+
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig.PNG" width="250">
+
+- open Eclipse->Window->Preferences->Language Servers
+
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS0.PNG" width="250">
+
+- click add -> Text -> Java Source File -> Program -> crytoLSP ->OK
+
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS1.PNG" width="250">
+
 
 Run monaco demo
 - install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build the example  
