@@ -15,21 +15,21 @@ Run Eclipse demo
 - install lsp4e - http://download.eclipse.org/lsp4e/releases/latest/ 
 - create new launch configuratio called crytoLSP: 
 
-<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig0.PNG" width="250">
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig0.PNG" width="500">
 
 - set up in Main ->Location ``PATH\\TO\\Java8JDK\\bin\java.exe``
 - set up in Main ->Arguments for java: 
 ``-Duser.project=PATH\\TO\\crypto-lsp-demo -jar PATH\\TO\\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
 
-<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig.PNG" width="250">
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig.PNG" width="500">
 
 - open Eclipse->Window->Preferences->Language Servers
 
-<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS0.PNG" width="250">
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS0.PNG" width="500">
 
 - click add -> Text -> Java Source File -> Program -> crytoLSP ->OK
 
-<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS1.PNG" width="250">
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS1.PNG" width="500">
 
 
 Run monaco demo
