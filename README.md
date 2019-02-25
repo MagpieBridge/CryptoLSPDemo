@@ -1,4 +1,4 @@
-# CryptoLSPDemo
+# CryptoLSPDemo[![Build Status](https://travis-ci.com/MagpieBridge/CryptoLSPDemo.svg?branch=master)](https://travis-ci.com/MagpieBridge/CryptoLSPDemo)
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git
 - install with: 
 	-- ``gradlew build -x tests``
