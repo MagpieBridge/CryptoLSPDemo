@@ -66,6 +66,7 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 
 - select ``Setup Language Server`` in ``Command Palette`` and enable ``Globally``
 - restart Sublime and open an example 
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/SublimeDemo.PNG" width="800">
 
 
 
