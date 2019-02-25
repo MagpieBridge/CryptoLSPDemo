@@ -32,6 +32,9 @@
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/setupLS1.PNG" width="500">
 
 
+**Insecure crypto warning in Eclipse**
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/EclipseDemo.png" width="800">
+
 ## Run monaco demo
 - install the JavaScript package manager npm, ``cd monaco-example`` and ``npm install`` to build the example  
 - build crypto server war file with ``mvn war:war``
@@ -41,6 +44,9 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 - start ``tomcat\bin\startup.bat`` or ``tomcat\bin\startup.sh``
 - copy ``monaco-example`` to ``minweb\htdocs`` of [minweb](https://sourceforge.net/projects/miniweb/) and start minweb.exe
 - open http://localhost:8000/monaco-example/lib/ in browser
+
+**Insecure crypto warning in Monaco web editor**
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/MonacoDemo.png" width="800">
 
 ## Run Sublime demo
 - install ``Package Control`` in ``Command Palette`` (windows)
@@ -66,6 +72,8 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 
 - select ``Setup Language Server`` in ``Command Palette`` and enable ``Globally``
 - restart Sublime and open an example 
+
+**Insecure crypto warning in Sublime Text**
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/SublimeDemo.png" width="800">
 
 
