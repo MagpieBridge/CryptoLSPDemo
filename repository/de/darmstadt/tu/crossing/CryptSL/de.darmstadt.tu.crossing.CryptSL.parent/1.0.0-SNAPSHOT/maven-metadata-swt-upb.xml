@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>de.darmstadt.tu.crossing.CryptSL</groupId>
+  <artifactId>de.darmstadt.tu.crossing.CryptSL.parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190222.165307</timestamp>
+      <buildNumber>13</buildNumber>
+    </snapshot>
+    <lastUpdated>20190222165307</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.0-20190222.165307-13</value>
+        <updated>20190222165307</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

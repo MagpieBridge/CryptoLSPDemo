@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Feb 26 14:10:54 CET 2019
+org.eclipse.lsp4j-0.5.0.jar>central=
+org.eclipse.lsp4j-0.5.0-sources.jar>central=
+org.eclipse.lsp4j-0.5.0.pom>central=
