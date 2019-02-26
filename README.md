@@ -2,7 +2,7 @@
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git
 - install with: 
 	-- ``gradlew build -x test``
-	-- ``gradlew install -Dmaven.repo.local="path\to\your\local\m2"``
+	-- ``gradlew install -Dmaven.repo.local="path\to\your\local\m2\repository"``
 2. check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
 - install with ``mvn install -DskipTests`` 
 3. check out "master" branch from CryptoAnalysis https://github.com/MagpieBridge/CryptoAnalysis.git
