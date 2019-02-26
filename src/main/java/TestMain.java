@@ -21,14 +21,4 @@ public class TestMain {
   }
 
   public static String ruleDirPath = new File(userProject + "/JCA_rules").getAbsolutePath();
-  public static String testTargetPath
-      = new File(userProject + "/src/test/resources/CryptoAnalysisTargets").getAbsolutePath();
-
-  public static void main(String... args) {
-    CryptoServerAnalysis analysis = new CryptoServerAnalysis(ruleDirPath);
-    Collection<AnalysisResult> results = analysis.analyze(testTargetPath + File.separator + "CogniCryptDemoExample");
-    for (AnalysisResult re : results) {
-      LogManager.getLogger().error(re.toString());
-    }
-  }
 }
