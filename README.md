@@ -1,11 +1,15 @@
 # CryptoLSPDemo[![Build Status](https://travis-ci.com/MagpieBridge/CryptoLSPDemo.svg?branch=master)](https://travis-ci.com/MagpieBridge/CryptoLSPDemo)
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git
 - install with: 
-	-- ``gradlew build -x tests``
-	-- ``gradlew install -Dmaven.repo.local=path\to\your\local\m2``
+	-- ``gradlew build -x test``
+	-- ``gradlew install -Dmaven.repo.local="path\to\your\local\m2\repository"``
 2. check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
 - install with ``mvn install -DskipTests`` 
-3. check out "master" branch from CryptoAnalysis https://github.com/MagpieBridge/CryptoAnalysis.git
+
+3. install CryptoAnalysis.
+- check out "master" branch from WPDPS https://github.com/MagpieBridge/WPDS.git (used by CryptoAnalysis)
+- install with  ``mvn install -DskipTests`` 
+- check out "master" branch from CryptoAnalysis https://github.com/MagpieBridge/CryptoAnalysis.git
 - install with  ``mvn install -DskipTests`` 
 4. check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
 - install with ``mvn install -DskipTests`` 
