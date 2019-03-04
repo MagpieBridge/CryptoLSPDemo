@@ -13,17 +13,8 @@ echo build magpieBridge
 set "cmd2=mvn -f %magpieRepo% install"
 call %cmd2%
 
+
 echo build cryptoLSPdemo
-set "cmd3=mvn -f %cryptoRepo% war:war"
+set "cmd3=mvn -f %cryptoRepo% install"
 call %cmd3%
-
-set cryptowarPath=%cryptoRepo%\target\crypto-lsp-demo-0.0.1-SNAPSHOT.war
-set goalPath=%tomacatWebapps%\crypto-lsp-demo.war
-
-echo copy snapshot crytoLSPdemo.war to tomcat
-cp %cryptowarPath% %goalPath%
-
-echo start tomcat
-set "uptomcat=%tomacatBin%\startup.bat"
-call %uptomcat%
 
