@@ -15,7 +15,7 @@ public class CryptoAnalysisTargetsTest {
     String testTargetPath
         = new File(System.getProperty("user.project") + "/src/test/resources/CryptoAnalysisTargets").getAbsolutePath();
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(TestMain.ruleDirPath);
-    Collection<AnalysisResult> results = analysis.analyze(testTargetPath + File.separator + "CogniCryptDemoExample");
+    Collection<AnalysisResult> results = analysis.analyze(Collections.singleton(testTargetPath + File.separator + "CogniCryptDemoExample"));
     for (AnalysisResult re : results) {
       LogManager.getLogger().error(re.toString());
     }
