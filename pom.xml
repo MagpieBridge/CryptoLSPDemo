@@ -150,9 +150,14 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>swt-upb</id>
+			<id>wala</id>
+			<name>wala snapshots</name>
+			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/wala/</url>
+		</repository>
+		<repository>
+			<id>soot-snapshot</id>
 			<name>soot snapshots</name>
-			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/</url>
+			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/</url>
 		</repository>
 	</repositories>
 </project>
