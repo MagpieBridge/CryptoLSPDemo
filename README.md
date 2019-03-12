@@ -87,3 +87,5 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 	
 
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/IntelliJConfig.PNG" width="800">
+
+- you need to build the project such that the warnings will be shown.
