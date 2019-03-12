@@ -67,7 +67,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
   }
 
   public Collection<AnalysisResult> analyze(Collection<? extends Module> files) {
-    CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
+    CryptoTransformer transformer = new CryptoTransformer(ruleDirPath, false);
     loadSourceCode(files);
     runSootPacks(transformer);
     Collection<AnalysisResult> results = transformer.getAnalysisResults();
@@ -75,7 +75,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
   }
 
   public Collection<AnalysisResult> analyze(Set<String> srcPath) {
-    CryptoTransformer transformer = new CryptoTransformer(ruleDirPath);
+    CryptoTransformer transformer = new CryptoTransformer(ruleDirPath, false);
     loadSourceCode(srcPath);
     runSootPacks(transformer);
     Collection<AnalysisResult> results = transformer.getAnalysisResults();

@@ -21,4 +21,6 @@ public class TestMain {
   }
 
   public static String ruleDirPath = new File(userProject + "/JCA_rules").getAbsolutePath();
+  public static String configPath=new File(userProject+"/config").getAbsolutePath();
+  
 }

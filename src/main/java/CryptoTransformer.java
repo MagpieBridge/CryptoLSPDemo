@@ -27,10 +27,13 @@ import magpiebridge.core.AnalysisResult;
 public class CryptoTransformer extends SceneTransformer {
   private String ruleDir;
   private CryptoErrorReporter errorReporter;
+  private boolean isAndroid;
 
-  public CryptoTransformer(String ruleDir) {
+  public CryptoTransformer(String ruleDir, boolean isAndroid) {
     this.ruleDir = ruleDir;
-    initilizeSootOptions();
+    this.isAndroid = isAndroid;
+    if (!isAndroid)
+      initilizeSootOptions();
     this.errorReporter = new CryptoErrorReporter();
   }
 
@@ -118,7 +121,7 @@ public class CryptoTransformer extends SceneTransformer {
     Options.v().set_output_format(Options.output_format_none);
     Options.v().set_no_bodies_for_excluded(true);
     Options.v().set_allow_phantom_refs(true);
-    Options.v().set_keep_line_number(true);
+    //Options.v().set_keep_line_number(true);
     Options.v().set_prepend_classpath(true);// append rt.jar to soot class path
     Options.v().set_soot_classpath(File.pathSeparator + pathToJCE());
     Options.v().set_include(getIncludeList());
