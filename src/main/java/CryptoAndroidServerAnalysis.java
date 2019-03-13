@@ -41,12 +41,11 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
   private String ruleDirPath;
   private String configPath;
   private String androidPlatform;
-  
-  
+
   public CryptoAndroidServerAnalysis(String ruleDirPath, String configPath, String androidPlatform) {
     this.ruleDirPath = ruleDirPath;
     this.configPath = configPath;
-    this.androidPlatform=androidPlatform;
+    this.androidPlatform = androidPlatform;
   }
 
   @Override
@@ -56,8 +55,9 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
 
   @Override
   public void analyze(Collection<Module> files, MagpieServer server) {
-    String apkFile="";
-    Set<String> libPath=new HashSet<>();
+    String apkFile
+        = "E:\\Git\\Github\\magpie\\crypto-lsp-demo\\src\\test\\resources\\CryptoAndroidApp\\app\\build\\outputs\\apk\\debug\\app-debug.apk";
+    Set<String> libPath = new HashSet<>();
     Set<String> srcPath = null;
     Optional<IProjectService> opt = server.getProjectService("java");
     if (opt.isPresent()) {
@@ -69,6 +69,10 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
         srcPath = temp;
       }
     }
+    srcPath = new HashSet<String>();
+    srcPath.add(
+        "E:\\Git\\Github\\magpie\\crypto-lsp-demo\\src\\test\\resources\\CryptoAndroidApp\\app\\build\\generated\\source");
+    srcPath.add("E:\\Git\\Github\\magpie\\crypto-lsp-demo\\src\\test\\resources\\CryptoAndroidApp\\app\\src");
     Collection<AnalysisResult> results = Collections.emptyList();
     if (srcPath != null) {
       // do whole program analysis

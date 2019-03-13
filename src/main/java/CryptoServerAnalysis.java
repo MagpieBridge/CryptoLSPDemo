@@ -55,6 +55,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     Collection<AnalysisResult> results = Collections.emptyList();
     if (srcPath != null) {
       // do whole program analysis
+      System.err.println("SOURCE PATH: "+srcPath);
       results = analyze(srcPath);
     } else {
       // only analyze relevant files
