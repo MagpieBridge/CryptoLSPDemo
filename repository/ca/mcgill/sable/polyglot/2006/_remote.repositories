@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Mar 13 15:08:02 CET 2019
+polyglot-2006.pom>soot-release=
+polyglot-2006.jar>soot-release=
+polyglot-2006.jar>swt-upb=
+polyglot-2006.pom>swt-upb=
+polyglot-2006.pom>central=

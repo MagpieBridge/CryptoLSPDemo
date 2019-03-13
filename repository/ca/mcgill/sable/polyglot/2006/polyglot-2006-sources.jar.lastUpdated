@@ -1,0 +1,12 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 04 14:08:32 CET 2019
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=Could not transfer artifact ca.mcgill.sable\:polyglot\:jar\:sources\:2006 from/to soot-snapshot (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/)\: Failed to transfer https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/ca/mcgill/sable/polyglot/2006/polyglot-2006-sources.jar. Error code 400, Repository version policy\: SNAPSHOT does not allow version\: 2006
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1551704912094
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/.lastUpdated=1551183393037
+@default-soot-snapshot-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1551704912059
+https\://repo.maven.apache.org/maven2/.lastUpdated=1551182635926
+https\://repo.maven.apache.org/maven2/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1551186676224

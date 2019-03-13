@@ -1,0 +1,12 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Mar 12 10:09:31 CET 2019
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=Could not transfer artifact ca.mcgill.sable\:axmlprinter\:jar\:sources\:2016-07-27 from/to soot-snapshot (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/)\: Failed to transfer https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/ca/mcgill/sable/axmlprinter/2016-07-27/axmlprinter-2016-07-27-sources.jar. Error code 400, Repository version policy\: SNAPSHOT does not allow version\: 2016-07-27
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1551704910352
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/.lastUpdated=1551703792661
+@default-soot-snapshot-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1551704910319
+https\://repo.maven.apache.org/maven2/.lastUpdated=1551703792792
+https\://repo.maven.apache.org/maven2/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1552381771356

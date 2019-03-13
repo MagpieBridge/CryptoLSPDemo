@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Feb 26 13:16:26 CET 2019
+jasmin-3.0.0-20171107.131122-2.jar>swt-upb=
+jasmin-3.0.0-20171107.131122-2-sources.jar>soot-snapshot=
+jasmin-3.0.0-20171107.131122-2.pom>soot-snapshot=

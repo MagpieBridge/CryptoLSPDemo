@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 04 14:08:27 CET 2019
+axmlprinter-2016-07-27.jar>soot-release=
+axmlprinter-2016-07-27.jar>swt-upb=
+axmlprinter-2016-07-27.pom>swt-upb=
+axmlprinter-2016-07-27.pom>soot-release=

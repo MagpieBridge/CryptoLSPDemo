@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 04 14:08:31 CET 2019
+soot-3.2.0.jar>soot-release=
+soot-3.2.0-sources.jar>soot-release=
+soot-3.2.0.pom>soot-release=
