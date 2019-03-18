@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 18 22:29:22 CET 2019
+soot-infoflow-2.7.1.jar>=
+soot-infoflow-2.7.1-sources.jar>=
+soot-infoflow-2.7.1-tests.jar>=
+soot-infoflow-2.7.1.pom>=
+soot-infoflow-2.7.1-javadoc.jar>=
