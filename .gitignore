@@ -15,3 +15,7 @@ dependency-reduced-pom\.xml
 monaco-example/node_modules/
 
 monaco-example/lib/
+
+src/test/resources/InsecureBank/lsp/
+
+src/test/resources/CryptoAndroidApp/lsp/
