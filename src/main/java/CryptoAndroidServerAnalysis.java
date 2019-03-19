@@ -5,6 +5,7 @@ import de.upb.soot.frontends.java.WalaClassLoader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,8 +15,8 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 import magpiebridge.core.AnalysisResult;
+import magpiebridge.core.AndroidProjectService;
 import magpiebridge.core.IProjectService;
-import magpiebridge.core.JavaProjectService;
 import magpiebridge.core.MagpieServer;
 import magpiebridge.core.ServerAnalysis;
 import soot.PackManager;
@@ -52,26 +53,32 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
 
   @Override
   public void analyze(Collection<Module> files, MagpieServer server) {
-    String apkFile = "";
+    String apkFile = null;
     Set<String> libPath = new HashSet<>();
-    Set<String> srcPath = null;
-    Optional<IProjectService> opt = server.getProjectService("java");
-    if (opt.isPresent()) {
-      JavaProjectService ps = (JavaProjectService) server.getProjectService("java").get();
+    Set<String> srcPath = new HashSet<>();
+    Optional<IProjectService> service = server.getProjectService("java");
+    if (service.isPresent()) {
+      AndroidProjectService ps = (AndroidProjectService) server.getProjectService("java").get();
       Set<Path> sourcePath = ps.getSourcePath();
       if (!sourcePath.isEmpty()) {
-        Set<String> temp = new HashSet<>();
-        sourcePath.stream().forEach(path -> temp.add(path.toString()));
-        srcPath = temp;
+        sourcePath.stream().forEach(path -> srcPath.add(path.toString()));
+      }
+      if (ps.getApkPath().isPresent()) {
+        apkFile = ps.getApkPath().get().toAbsolutePath().toString();
+        String rootPath = ps.getRootPath().get().toString();
+        Path libJar = Paths.get(rootPath, "out.jar");
+        if (!libJar.toFile().exists()) {
+          // generate a big out.jar contains all dependencies from the apk file
+          Utils.generateJar(
+              apkFile, androidPlatform, rootPath, ps.getSourceClassFullQualifiedNames());
+        }
+        libPath.add(libJar.toAbsolutePath().toString());
       }
     }
     Collection<AnalysisResult> results = Collections.emptyList();
-    if (srcPath != null) {
+    if (!srcPath.isEmpty()) {
       // do whole program analysis
       results = analyze(androidPlatform, apkFile, srcPath, libPath);
-    } else {
-      // only analyze relevant files
-      // results = analyze(files);
     }
     for (AnalysisResult re : results) {
       System.err.println(re.toString());
