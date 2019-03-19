@@ -9,10 +9,7 @@ public class CryptoAnalysisTargetsTest {
 
   @Test
   public void test() {
-    System.setProperty("user.project", System.getProperty("user.dir"));
-    String testTargetPath =
-        new File(System.getProperty("user.project") + "/src/test/resources/CryptoAnalysisTargets")
-            .getAbsolutePath();
+    String testTargetPath = new File("src/test/resources/CryptoAnalysisTargets").getAbsolutePath();
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(Utils.ruleDirPath);
     Collection<AnalysisResult> results =
         analysis.analyze(

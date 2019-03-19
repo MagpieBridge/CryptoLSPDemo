@@ -1,30 +1,26 @@
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import magpiebridge.core.AnalysisResult;
+import magpiebridge.projectservice.java.InferSourcePath;
 import org.apache.logging.log4j.LogManager;
 import org.junit.Test;
 
 public class CryptoInsecureBankAndroidTest {
   @Test
   public void test() {
-    System.setProperty("user.project", System.getProperty("user.dir"));
-    String projectDir = System.getProperty("user.project");
-    String androidPlatform =
-        new File(projectDir + File.separator + "src/test/resources/platforms").getAbsolutePath();
+    String androidPlatform = new File("src/test/resources/platforms").getAbsolutePath();
     CryptoAndroidServerAnalysis analysis =
         new CryptoAndroidServerAnalysis(Utils.ruleDirPath, Utils.configPath, androidPlatform);
-    String androidProjDir =
-        new File(projectDir + File.separator + "src/test/resources/InsecureBank").getAbsolutePath();
+    String androidProjDir = new File("src/test/resources/InsecureBank").getAbsolutePath();
     String apkFile = androidProjDir + File.separator + "app/build/outputs/apk/debug/app-debug.apk";
 
-    // InferSourcePath infer=new InferSourcePath();
-    // System.out.println(infer.sourcePath( Paths.get(androidProjDir).toAbsolutePath()));
-    // Set<String> excludedPkgs= infer.getClassFullQualifiedNames();
-    // System.out.println(excludedPkgs);
-    // Utils.generateJar(apkFile, androidPlatform, projectDir, excludedPkgs);
-    // TestMain.generateJar(apkFile, androidPlatform, androidProjDir+File.separator+"lib");
+    InferSourcePath infer = new InferSourcePath();
+    infer.sourcePath(Paths.get("src/test/resources/InsecureBank/"));
+    Set<String> excludedPkgs = infer.getClassFullQualifiedNames();
+    Utils.generateJar(apkFile, androidPlatform, "src/test/resources/InsecureBank/", excludedPkgs);
 
     Set<String> srcPath = new HashSet<String>();
     Set<String> libPath = new HashSet<String>();

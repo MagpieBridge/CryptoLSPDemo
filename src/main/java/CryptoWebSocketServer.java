@@ -1,3 +1,4 @@
+import java.io.File;
 import javax.websocket.OnError;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
@@ -15,7 +16,8 @@ public class CryptoWebSocketServer extends LSPWebSocketServer<MagpieServer> {
           // tomcat\bin\catalina.bat
           // for linux, add this line 'JAVA_OPTS="-Duser.project=PATH/TO/crypto-lsp-demo"' to
           // tomcat\bin\catalina.sh
-          String ruleDirPath = Utils.ruleDirPath;
+          String userProject = System.getProperty("user.project");
+          String ruleDirPath = userProject + File.separator + Utils.ruleDirPath;
           MagpieServer server = new MagpieServer();
           server.addAnalysis("java", new CryptoServerAnalysis(ruleDirPath));
           return server;

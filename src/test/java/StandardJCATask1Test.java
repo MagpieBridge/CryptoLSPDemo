@@ -9,10 +9,7 @@ public class StandardJCATask1Test {
 
   @Ignore
   public void test() {
-    System.setProperty("user.project", System.getProperty("user.dir"));
-    String testTargetPath =
-        new File(System.getProperty("user.project") + "/src/test/resources/StandardJCATasks")
-            .getAbsolutePath();
+    String testTargetPath = new File("src/test/resources/StandardJCATasks").getAbsolutePath();
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(Utils.ruleDirPath);
     Collection<AnalysisResult> results =
         analysis.analyze(Collections.singleton(testTargetPath + File.separator + "Task1"));

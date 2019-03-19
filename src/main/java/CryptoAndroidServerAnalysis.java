@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.AndroidProjectService;
@@ -66,11 +67,22 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
       if (ps.getApkPath().isPresent()) {
         apkFile = ps.getApkPath().get().toAbsolutePath().toString();
         String rootPath = ps.getRootPath().get().toString();
-        Path libJar = Paths.get(rootPath, "out.jar");
-        if (!libJar.toFile().exists()) {
+        File gendir = Paths.get(rootPath, "generatedlib").toFile();
+        if (!gendir.exists()) {
+          gendir.mkdirs();
+        }
+        Path libJar = Paths.get(gendir.toPath().toString(), "out.jar");
+        File jar = libJar.toFile();
+        if (!jar.exists()) {
           // generate a big out.jar contains all dependencies from the apk file
           Utils.generateJar(
-              apkFile, androidPlatform, rootPath, ps.getSourceClassFullQualifiedNames());
+              apkFile,
+              androidPlatform,
+              gendir.toPath().toString(),
+              ps.getSourceClassFullQualifiedNames());
+          if (jar.exists()) {
+            LOG.log(Level.INFO, "Created a out.jar with soot");
+          }
         }
         libPath.add(libJar.toAbsolutePath().toString());
       }
@@ -88,6 +100,10 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
 
   public void buildCallGraphWithFlowDroid(
       String androidPlatform, String apkFile, Set<String> srcPath, Set<String> libPath) {
+    LOG.log(Level.INFO, "buildCallGraphWithFlowDroid-androidPlatform:" + androidPlatform);
+    LOG.log(Level.INFO, "buildCallGraphWithFlowDroid-apkFile:" + apkFile);
+    LOG.log(Level.INFO, "buildCallGraphWithFlowDroid-srcPath:" + srcPath);
+    LOG.log(Level.INFO, "buildCallGraphWithFlowDroid-libPath:" + libPath);
     try {
       // setup flowDroid configuration
       InfoflowAndroidConfiguration c = new InfoflowAndroidConfiguration();
