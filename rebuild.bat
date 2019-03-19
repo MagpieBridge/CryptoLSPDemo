@@ -10,6 +10,8 @@ rem set "cmd1=mvn -f %sootRepo% install"
 rem call %cmd1%
 
 echo build magpieBridge
+set "cmdf=mvn -f %magpieRepo% com.coveo:fmt-maven-plugin:format"
+call %cmdf%
 set "cmd2=mvn -f %magpieRepo% install"
 call %cmd2%
 
