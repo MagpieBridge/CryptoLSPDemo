@@ -1,8 +1,7 @@
 language: java
-install:
+script:   
   - git clone --branch=lsp https://github.com/linghuiluo/FlowDroid.git FlowDroid
-  - ls
   - cd FlowDroid
   - mvn install -DskipTests
-script: 
-  - mvn install
+  - cd ..
+  - mvn install 
