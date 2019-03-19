@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +15,7 @@ public class StandardJCATask1Test {
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(Utils.ruleDirPath);
     Collection<AnalysisResult> results =
         analysis.analyze(Collections.singleton(testTargetPath + File.separator + "Task1"));
+    assertTrue(results.size() == 3);
     for (AnalysisResult re : results) {
       LogManager.getLogger().error(re.toString());
     }

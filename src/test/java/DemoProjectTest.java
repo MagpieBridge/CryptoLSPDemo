@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,6 +13,7 @@ public class DemoProjectTest {
     String testTargetPath = new File("src/test/resources/DemoProject").getAbsolutePath();
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(Utils.ruleDirPath);
     Collection<AnalysisResult> results = analysis.analyze(Collections.singleton(testTargetPath));
+    assertTrue(results.size() == 3);
     for (AnalysisResult re : results) {
       LogManager.getLogger().error(re.toString());
     }

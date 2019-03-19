@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -30,6 +32,7 @@ public class CryptoInsecureBankAndroidTest {
     libPath.add("src/test/resources/InsecureBank/out.jar");
     Collection<AnalysisResult> results =
         analysis.analyze(androidPlatform, apkFile, srcPath, libPath);
+    assertTrue(results.size() == 1);
     for (AnalysisResult re : results) {
       LogManager.getLogger().error(re.toString());
     }
