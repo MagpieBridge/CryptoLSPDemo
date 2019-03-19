@@ -3,5 +3,6 @@ before_install:
   - git clone --branch=lsp https://github.com/linghuiluo/FlowDroid.git FlowDroid
   - cd FlowDroid
   - mvn install -DskipTests
+  - cd ..
 script:   
   - mvn install 
