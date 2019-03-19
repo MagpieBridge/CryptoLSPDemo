@@ -19,3 +19,7 @@ monaco-example/lib/
 src/test/resources/InsecureBank/lsp/
 
 src/test/resources/CryptoAndroidApp/lsp/
+
+src/test/resources/InsecureBank/app/build/outputs/apk/debug/output\.json
+
+src/test/resources/InsecureBank/app/build/outputs/logs/manifest-merger-debug-report\.txt
