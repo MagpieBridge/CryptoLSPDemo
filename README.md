@@ -23,7 +23,7 @@
 
 - set up in Main ->Location ``PATH\TO\Java8JDK\bin\java.exe``
 - set up in Main ->Arguments for java: 
-``-jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar "-c" "PATH\TO\crypto-lsp-demo"``
+``-jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar -c PATH\TO\crypto-lsp-demo``
 
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig.PNG" width="500">
 
@@ -83,7 +83,8 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 ## Run IntelliJ demo
 - install Plugin "LSP Support":(Settings > Plugins > Search for "LSP Support" 
 - add Server definition: Settings > Language & Frameworks > Language Server Protocol > Server Definitions
-	- Raw command -> Extension: java -> Command: java -jar "PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar" "-c" "PATH\TO\crypto-lsp-demo"
+	- Raw command -> Extension: java -> Command: 
+	``java -jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar -c PATH\TO\crypto-lsp-demo``
 	
 
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/IntelliJConfig.PNG" width="800">
