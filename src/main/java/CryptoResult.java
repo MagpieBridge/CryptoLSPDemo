@@ -1,10 +1,8 @@
 import com.ibm.wala.cast.tree.CAstSourcePositionMap.Position;
 import com.ibm.wala.util.collections.Pair;
-
-import org.eclipse.lsp4j.DiagnosticSeverity;
-
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.Kind;
+import org.eclipse.lsp4j.DiagnosticSeverity;
 
 public class CryptoResult implements AnalysisResult {
   private final Kind kind;
@@ -14,8 +12,13 @@ public class CryptoResult implements AnalysisResult {
   private final DiagnosticSeverity severity;
   private final String repair;
 
-  public CryptoResult(Kind kind, Position pos, String msg, Iterable<Pair<Position, String>> relatedInfo,
-      DiagnosticSeverity severity, String repair) {
+  public CryptoResult(
+      Kind kind,
+      Position pos,
+      String msg,
+      Iterable<Pair<Position, String>> relatedInfo,
+      DiagnosticSeverity severity,
+      String repair) {
     this.kind = kind;
     this.position = pos;
     this.message = msg;
@@ -50,8 +53,18 @@ public class CryptoResult implements AnalysisResult {
 
   @Override
   public String toString() {
-    return "CryptoResult [kind=" + kind + ", position=" + position + ", message=" + message + ", related=" + related
-        + ", severity=" + severity + ", repair=" + repair + "]";
+    return "CryptoResult [kind="
+        + kind
+        + ", position="
+        + position
+        + ", message="
+        + message
+        + ", related="
+        + related
+        + ", severity="
+        + severity
+        + ", repair="
+        + repair
+        + "]";
   }
-
 }

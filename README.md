@@ -80,5 +80,10 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 **Insecure crypto warning in Sublime Text**
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/SublimeDemo.png" width="800">
 
+## Run IntelliJ Demo
+- install Plugin "LSP Support":(Settings > Plugins > Search for "LSP Support" 
+- add Server definition: Settings > Language & Frameworks > Language Server Protocol > Server Definitions
+	- Raw command -> Extension: java -> Command: java -Duser.project=PATH\TO\crypto-lsp-demo -jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar
+	
 
-
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/IntelliJConfig.PNG" width="800">
