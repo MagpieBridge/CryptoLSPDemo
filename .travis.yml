@@ -1,5 +1,9 @@
 language: java
 before_install:
+  - git clone --branch=mvn https://github.com/MagpieBridge/CryptoLSPDemo.git mvnRepo
+  - cd mvnRepo
+  - cp -r repository $HOME/.m2/repository
+  - cd ..
   - git clone --branch=lsp https://github.com/linghuiluo/FlowDroid.git FlowDroid
   - cd FlowDroid
   - mvn install -DskipTests
@@ -8,6 +12,5 @@ before_install:
   - cd MagpieBridge
   - mvn install -DskipTests
   - cd ..
-  - cd CryptoLSPDemo
 script:   
   - mvn install 
