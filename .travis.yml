@@ -1,5 +1,6 @@
 language: java
 before_install:
+  - pwd
   - git clone --branch=mvn https://github.com/MagpieBridge/CryptoLSPDemo.git  $HOME/travis/build/MagpieBridge/mvnRepo
   - cd $HOME/travis/build/MagpieBridge/mvnRepo
   - cp -r repository $HOME/.m2/repository
@@ -9,6 +10,7 @@ before_install:
   - git clone --branch=develop https://github.com/MagpieBridge/MagpieBridge.git $HOME/travis/build/MagpieBridge/MagpieBridge
   - cd $HOME/travis/build/MagpieBridge/MagpieBridge
   - mvn install -DskipTests
+  - pwd
   - cd $HOME/travis/build/MagpieBridge/CryptoLSPDemo
 script:   
   - mvn install 
