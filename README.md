@@ -23,7 +23,7 @@
 
 - set up in Main ->Location ``PATH\TO\Java8JDK\bin\java.exe``
 - set up in Main ->Arguments for java: 
-``-Duser.project=PATH\TO\crypto-lsp-demo -jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar``
+``-jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar -c PATH\TO\crypto-lsp-demo``
 
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/eclipseconfig.PNG" width="500">
 
@@ -63,7 +63,7 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 
   "clients": {
     "cognicrypt": {
-    "command": ["C:\\PROGRA~1\\Java\\JDK18~1.0_1\\bin\\java", "-Duser.project=PATH\\TO\\crypto-lsp-demo", "-jar", "PATH\\TO\\crypto-lsp-demo\\target\\crypto-lsp-demo-0.0.1-SNAPSHOT.jar"], 
+    "command": ["C:\\PROGRA~1\\Java\\JDK18~1.0_1\\bin\\java","-jar", "PATH\\TO\\crypto-lsp-demo\\target\\crypto-lsp-demo-0.0.1-SNAPSHOT.jar","-c", "PATH\TO\crypto-lsp-demo"], 
     "enabled": true,
     "languageId": "java",
     "scopes": ["source.java"],
@@ -80,9 +80,17 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 **Insecure crypto warning in Sublime Text**
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/SublimeDemo.png" width="800">
 
-## Run IntelliJ Demo
+## Run IntelliJ demo
 - install Plugin "LSP Support":(Settings > Plugins > Search for "LSP Support" 
 - add Server definition: Settings > Language & Frameworks > Language Server Protocol > Server Definitions
-	- Raw command -> Extension: java -> Command: java -jar "PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar" "-c" "PATH\TO\crypto-lsp-demo" 
-		
+	- Raw command -> Extension: java -> Command: 
+	``java -jar PATH\TO\crypto-lsp-demo\target\crypto-lsp-demo-0.0.1-SNAPSHOT.jar -c PATH\TO\crypto-lsp-demo``
+	
+
 <img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/IntelliJConfig.PNG" width="800">
+
+- add LSP server to inspections: (Analyze > Inspect Code > Inspection profile ... > LSP )
+
+- click OK, crypto warnings will be shown in the View "Inspection Results".
+
+
