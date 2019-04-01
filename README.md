@@ -1,6 +1,6 @@
 # CryptoLSPDemo[![Build Status](https://travis-ci.com/MagpieBridge/CryptoLSPDemo.svg?branch=master)](https://travis-ci.com/MagpieBridge/CryptoLSPDemo)
 Formatting the code with ``mvn com.coveo:fmt-maven-plugin:format`` before git push 
-# Tested IDEs/Editors
+## Tested IDEs/Editors
 - Eclipse
 - IntelliJ
 - AndroidStudio
