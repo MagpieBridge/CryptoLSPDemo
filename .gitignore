@@ -23,3 +23,23 @@ src/test/resources/CryptoAndroidApp/lsp/
 src/test/resources/InsecureBank/app/build/outputs/apk/debug/output\.json
 
 src/test/resources/InsecureBank/app/build/outputs/logs/manifest-merger-debug-report\.txt
+
+vscode/node_modules/
+
+vscode/out
+
+vscode/config
+
+vscode/JCA_rules
+
+vscode/crypto-lsp-demo.jar
+
+vscode/crypto-lsp-demo-0.0.1.vsix
+
+.vscode/
+
+*.log
+
+src/test/resources/InsecureBank/\.settings/org\.eclipse\.buildship\.core\.prefs
+
+src/test/resources/InsecureBank/app/\.settings/org\.eclipse\.buildship\.core\.prefs

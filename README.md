@@ -93,4 +93,58 @@ for linux, add ``JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"`` to ``tomca
 
 - click OK, crypto warnings will be shown in the View "Inspection Results".
 
+## Run VsCode demo
 
+Language servers in VsCode can only be configured by writing a small vscode extension using the 'vscode-languageclient' library. 
+This demo contains all necessary configurations and the implementation of the vscode extension.
+The extension is written in TypeScript and is comprised of three important files: 
+1. ``vscode/src/extension.ts``: lsp-client implementation
+- configures the jar and commandline arguments for the lsp server
+```let script = 'java';
+    let args = ['-jar',context.asAbsolutePath(path.join('crypto-lsp-demo.jar')),"-c", context.asAbsolutePath('.')];
+    let serverOptions: ServerOptions = {
+        run : { command: script, args: args },
+        debug: { command: script, args: args} //, options: { env: createDebugEnv() }
+    };```
+- configures the language and a watcher to be notified when .java files change
+```let clientOptions: LanguageClientOptions = {
+        documentSelector: [{ scheme: 'file', language: 'java' }],
+        synchronize: {
+            configurationSection: 'java',
+            fileEvents: [ workspace.createFileSystemWatcher('**/*.java') ]
+        }
+    };```
+- start the language client:
+```let lc : LanguageClient = new LanguageClient('crypto-lsp-demo','Crypto LSP Demo Server', serverOptions, clientOptions);
+    lc.start();```
+2. ``vscode/package.json``: manifest file for the extension
+- contains the path to the lsp client code: 
+	- ``"main": ".out/extension"``
+- configures the file type to start the language server
+	- ``"activationEvents": [
+		"onLanguage:java"
+	]``
+- configures the dependencies for the extension:
+	- ``"dependencies": {
+			"vscode-languageclient": "^5.2.1"
+		}``
+- copies the jar and configuration files into the extension folder:
+	- ``"scripts": {
+		"vscode:prepublish": "cp [...]",
+		[..]
+		}``
+3. ``tsconfig.json``: Compiler configuration for TypeScript
+
+To execute the demo in vscode:
+		
+1. Make sure npm is installed
+2. compile and install VsCode extension from terminal:
+	- ``cd PATH\\TO\\crypto-lsp-demo\vscode``
+	- ``npm install``
+	- ``npm install -g vsce``
+	- ``vsce package``
+	- ``code --install-extension crypto-lsp-demo-0.0.1.vsix``
+	- #restart VsCode
+	
+**Insecure crypto warning in VsCode**
+<img src="https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/VSCodeDemo.png" width="800">
