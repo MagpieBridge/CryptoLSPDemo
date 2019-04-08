@@ -37,4 +37,31 @@ public class CryptoInsecureBankAndroidTest {
       LogManager.getLogger().error(re.toString());
     }
   }
+
+  @Test
+  public void testDemo() {
+    String androidPlatform = new File("src/test/resources/platforms").getAbsolutePath();
+    CryptoAndroidServerAnalysis analysis =
+        new CryptoAndroidServerAnalysis(Utils.ruleDirPath, Utils.configPath, androidPlatform);
+    String androidProjDir = new File("E:/Git/Github/magpie/InsecureBank").getAbsolutePath();
+    String apkFile =
+        new File(androidProjDir + "/app/build/outputs/apk/debug/app-debug.apk").getAbsolutePath();
+
+    InferSourcePath infer = new InferSourcePath();
+    infer.sourcePath(Paths.get(androidProjDir));
+    Set<String> excludedPkgs = infer.getClassFullQualifiedNames();
+    Utils.generateJar(apkFile, androidPlatform, androidProjDir, excludedPkgs);
+
+    Set<String> srcPath = new HashSet<String>();
+    Set<String> libPath = new HashSet<String>();
+    srcPath.add(new File(androidProjDir + "/app/src/main/java").getAbsolutePath());
+    // libPath.add(new
+    // File(androidPlatform+File.separator+"android-28/android.jar").getAbsolutePath());
+    libPath.add(androidProjDir + File.separator + "out.jar");
+    Collection<AnalysisResult> results =
+        analysis.analyze(androidPlatform, apkFile, srcPath, libPath);
+    for (AnalysisResult re : results) {
+      LogManager.getLogger().error(re.toString());
+    }
+  }
 }

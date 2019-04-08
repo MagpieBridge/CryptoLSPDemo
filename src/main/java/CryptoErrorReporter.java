@@ -40,7 +40,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
           List<Pair<Position, String>> relatedInfo = Collections.emptyList();
           CryptoResult res =
               new CryptoResult(
-                  Kind.Diagnostic, position, msg, relatedInfo, DiagnosticSeverity.Error, "");
+                  Kind.Diagnostic, position, msg, relatedInfo, DiagnosticSeverity.Error, "CBC");
           results.add(res);
         }
       }
