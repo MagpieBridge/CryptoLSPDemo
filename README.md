@@ -156,7 +156,7 @@ To execute the demo in vscode:
 	- ``npm install -g vsce``
 	- ``vsce package``
 	- ``code --install-extension crypto-lsp-demo-0.0.1.vsix``
-	- #restart VSCode
+	- restart VSCode
 	
 **Insecure crypto warning in VSCode**
 <img src="doc/VSCodeDemo.png" width="800">
