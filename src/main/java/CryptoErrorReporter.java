@@ -1,7 +1,10 @@
+import boomerang.jimple.Statement;
+import boomerang.jimple.Val;
 import com.ibm.wala.cast.tree.CAstSourcePositionMap.Position;
 import com.ibm.wala.util.collections.Pair;
 import crypto.analysis.errors.AbstractError;
 import crypto.analysis.errors.ConstraintError;
+import crypto.analysis.errors.ErrorWithObjectAllocation;
 import crypto.analysis.errors.ForbiddenMethodError;
 import crypto.analysis.errors.ImpreciseValueExtractionError;
 import crypto.analysis.errors.IncompleteOperationError;
@@ -15,7 +18,6 @@ import de.upb.soot.frontends.java.PositionInfoTag;
 import de.upb.soot.jimple.basic.PositionInfo;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -106,6 +108,25 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
     return Pair.make(pos, replace.toString());
   }
 
+  public List<Pair<Position, String>> getRelated(AbstractError error) {
+    List<Pair<Position, String>> related = new ArrayList<>();
+    if (error instanceof ErrorWithObjectAllocation) {
+      ErrorWithObjectAllocation err = (ErrorWithObjectAllocation) error;
+      for (sync.pds.solver.nodes.Node<Statement, Val> node : err.getDataFlowPath()) {
+        if (node.stmt().getUnit().isPresent()) {
+          PositionInfoTag tag =
+              (PositionInfoTag) node.stmt().getUnit().get().getTag("PositionInfoTag");
+          if (tag != null) {
+            // just add stmt positions on the data flow path to related for now
+            Position stmtPos = tag.getPositionInfo().getStmtPosition();
+            related.add(Pair.make(stmtPos, ""));
+          }
+        }
+      }
+    }
+    return related;
+  }
+
   @Override
   public void afterAnalysis() {
     for (SootClass klass : this.errorMarkers.rowKeySet()) {
@@ -121,7 +142,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
                   error.getRule().getClassName(),
                   error.toErrorMarkerString());
           // TODO. get relatedInfo from crypto analysis.
-          List<Pair<Position, String>> relatedInfo = Collections.emptyList();
+          List<Pair<Position, String>> relatedInfo = getRelated(error);
           Pair<Position, String> repair = getRepair(error, positionInfo);
           CryptoResult res =
               new CryptoResult(
