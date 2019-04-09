@@ -49,6 +49,9 @@ public class Demo {
       IllegalBlockSizeException, BadPaddingException {
     String data = "some data";
     String key = "secret key";
+    /**
+    CogniCrypt reports the parameter passed in the following line is insecure.
+    **/
     Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
     SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
     cipher.init(Cipher.DECRYPT_MODE, secretKey);

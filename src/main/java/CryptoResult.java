@@ -10,7 +10,7 @@ public class CryptoResult implements AnalysisResult {
   private final String message;
   private final Iterable<Pair<Position, String>> related;
   private final DiagnosticSeverity severity;
-  private final String repair;
+  private final Pair<Position, String> repair;
 
   public CryptoResult(
       Kind kind,
@@ -18,7 +18,7 @@ public class CryptoResult implements AnalysisResult {
       String msg,
       Iterable<Pair<Position, String>> relatedInfo,
       DiagnosticSeverity severity,
-      String repair) {
+      Pair<Position, String> repair) {
     this.kind = kind;
     this.position = pos;
     this.message = msg;
@@ -43,7 +43,7 @@ public class CryptoResult implements AnalysisResult {
     return severity;
   }
 
-  public String repair() {
+  public Pair<Position, String> repair() {
     return repair;
   }
 

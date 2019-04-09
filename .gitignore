@@ -43,3 +43,5 @@ vscode/crypto-lsp-demo-0.0.1.vsix
 src/test/resources/InsecureBank/\.settings/org\.eclipse\.buildship\.core\.prefs
 
 src/test/resources/InsecureBank/app/\.settings/org\.eclipse\.buildship\.core\.prefs
+
+src/test/resources/DemoAllErrors/\.idea/workspace\.xml
