@@ -47,8 +47,10 @@ public class CryptoServerAnalysis implements ServerAnalysis {
       if (opt.isPresent()) {
         JavaProjectService ps = (JavaProjectService) server.getProjectService("java").get();
         Set<Path> sourcePath = ps.getSourcePath();
-        if (libPath == null)
+        if (libPath == null) {
+          libPath = new HashSet<>();
           ps.getLibraryPath().stream().forEach(path -> libPath.add(path.toString()));
+        }
         if (!sourcePath.isEmpty()) {
           Set<String> temp = new HashSet<>();
           sourcePath.stream().forEach(path -> temp.add(path.toString()));
