@@ -6,15 +6,19 @@ set tomacatBin=D:\apache-tomcat-9.0.13\bin
 set tomacatWebapps=D:\apache-tomcat-9.0.13\webapps
 
 echo build soot-reloaded
-set "cmd1=mvn -f %sootRepo% install"
+set "cmdf=mvn -f %sootRepo% com.coveo:fmt-maven-plugin:format"
+call %cmdf%
+set "cmd1=mvn -f %sootRepo% install -DskipTests"
 call %cmd1%
 
+set "cmdf=mvn -f %magpieRepo% com.coveo:fmt-maven-plugin:format"
+call %cmdf%
 echo build magpieBridge
-set "cmd2=mvn -f %magpieRepo% install"
+set "cmd2=mvn -f %magpieRepo% install -DskipTests"
 call %cmd2%
 
 echo build cryptoLSPdemo
-set "cmd3=mvn -f %cryptoRepo% war:war"
+set "cmd3=mvn -f %cryptoRepo% war:war -DskipTests"
 call %cmd3%
 
 set cryptowarPath=%cryptoRepo%\target\crypto-lsp-demo-0.0.1-SNAPSHOT.war

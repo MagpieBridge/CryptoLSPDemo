@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.Kind;
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.lsp4j.DiagnosticSeverity;
 import soot.SootClass;
 import soot.SootMethod;
@@ -72,6 +73,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
                 filterQuotes(stmt.getInvokeExpr().getUseBoxes().get(0).getValue().toString())
                     .split(splitter.getSplitter());
           }
+
           if (splitValues.length >= splitter.getIndex()) {
             for (int i = 0; i < splitter.getIndex(); i++) {
               replace.append(splitValues[i]);
@@ -83,43 +85,65 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
         if (!repairs.isEmpty()) {
           replace.append(repairs.get(0));
         }
+        boolean isStaticMethod = false;
+        Stmt eloc = cError.getErrorLocation().getUnit().get();
+        if (eloc.containsInvokeExpr()) {
+          isStaticMethod = eloc.getInvokeExpr().getMethodRef().isStatic();
+        }
         int paramIndex = cError.getCallSiteWithExtractedValue().getCallSite().getIndex();
+        if (!isStaticMethod) {
+          paramIndex++; // non static method the first operand is this-reference.
+        }
         pos = positionInfo.getOperandPosition(paramIndex);
       }
     }
     if (error instanceof IncompleteOperationError) {
       IncompleteOperationError iError = (IncompleteOperationError) error;
+      // TODO
     }
     if (error instanceof TypestateError) {
       TypestateError tError = (TypestateError) error;
+      // TODO
     }
     if (error instanceof ForbiddenMethodError) {
       ForbiddenMethodError fError = (ForbiddenMethodError) error;
+      // TODO
     }
     if (error instanceof ImpreciseValueExtractionError) {
       ImpreciseValueExtractionError ivError = (ImpreciseValueExtractionError) error;
+      // TODO
     }
     if (error instanceof PredicateContradictionError) {
       PredicateContradictionError pError = (PredicateContradictionError) error;
+      // TODO
     }
     if (error instanceof RequiredPredicateError) {
       RequiredPredicateError rError = (RequiredPredicateError) error;
+      // TODO
     }
-    return Pair.make(pos, replace.toString());
+    String fixStr = replace.toString();
+    if (!StringUtils.isNumeric(fixStr)) {
+      fixStr = "\"" + fixStr;
+    }
+    if (pos != null) return Pair.make(pos, fixStr);
+    else return null;
   }
 
   public List<Pair<Position, String>> getRelated(AbstractError error) {
     List<Pair<Position, String>> related = new ArrayList<>();
     if (error instanceof ErrorWithObjectAllocation) {
       ErrorWithObjectAllocation err = (ErrorWithObjectAllocation) error;
+      Unit stmt = error.getErrorLocation().getUnit().get();
       for (sync.pds.solver.nodes.Node<Statement, Val> node : err.getDataFlowPath()) {
         if (node.stmt().getUnit().isPresent()) {
-          PositionInfoTag tag =
-              (PositionInfoTag) node.stmt().getUnit().get().getTag("PositionInfoTag");
-          if (tag != null) {
-            // just add stmt positions on the data flow path to related for now
-            Position stmtPos = tag.getPositionInfo().getStmtPosition();
-            related.add(Pair.make(stmtPos, ""));
+          Unit n = node.stmt().getUnit().get();
+          if (!n.equals(stmt)) {
+            PositionInfoTag tag = (PositionInfoTag) n.getTag("PositionInfoTag");
+            if (tag != null) {
+              // just add stmt positions on the data flow path to related for now
+              Position stmtPos = tag.getPositionInfo().getStmtPosition();
+              related.add(Pair.make(stmtPos, "on path"));
+            }
           }
         }
       }
