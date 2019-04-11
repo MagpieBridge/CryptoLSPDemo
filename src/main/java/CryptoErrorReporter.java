@@ -49,6 +49,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
       if (cError.getBrokenConstraint() instanceof CryptSLValueConstraint) {
         CryptSLValueConstraint brokenConstraint =
             (CryptSLValueConstraint) cError.getBrokenConstraint();
+        List<String> repairs = brokenConstraint.getValueRange();
         CryptSLSplitter splitter = brokenConstraint.getVar().getSplitter();
         if (splitter != null) {
           Stmt stmt = cError.getCallSiteWithExtractedValue().getVal().stmt().getUnit().get();
@@ -75,15 +76,30 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
           }
 
           if (splitValues.length >= splitter.getIndex()) {
-            for (int i = 0; i < splitter.getIndex(); i++) {
-              replace.append(splitValues[i]);
-              replace.append(splitter.getSplitter());
+            int i = 0;
+            while (i <= splitValues.length) {
+              if (i < splitter.getIndex()) {
+                replace.append(splitValues[i]);
+                replace.append(splitter.getSplitter());
+              } else if (i == splitter.getIndex()) {
+                if (!repairs.isEmpty()) {
+                  replace.append(repairs.get(0));
+                }
+              } else {
+                if (i < splitValues.length) {
+                  replace.append(splitter.getSplitter());
+                  replace.append(splitValues[i]);
+                  if (i != splitValues.length - 1) replace.append(splitter.getSplitter());
+                }
+              }
+              i++;
             }
           }
-        }
-        List<String> repairs = brokenConstraint.getValueRange();
-        if (!repairs.isEmpty()) {
-          replace.append(repairs.get(0));
+        } else {
+
+          if (!repairs.isEmpty()) {
+            replace.append(repairs.get(0));
+          }
         }
         boolean isStaticMethod = false;
         Stmt eloc = cError.getErrorLocation().getUnit().get();
@@ -123,7 +139,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
     }
     String fixStr = replace.toString();
     if (!StringUtils.isNumeric(fixStr)) {
-      fixStr = "\"" + fixStr;
+      fixStr = "\"" + fixStr + "\"";
     }
     if (pos != null) return Pair.make(pos, fixStr);
     else return null;
