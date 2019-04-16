@@ -6,7 +6,7 @@ Formatting the code with ``mvn com.coveo:fmt-maven-plugin:format`` before git pu
 - AndroidStudio
 - Sublime Text
 - Monaco 
-- VSCode (WIP)
+- VS Code 
 
 **You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git 
