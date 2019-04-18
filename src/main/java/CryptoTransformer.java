@@ -1,3 +1,5 @@
+import boomerang.callgraph.ObservableDynamicICFG;
+import boomerang.callgraph.ObservableICFG;
 import boomerang.preanalysis.BoomerangPretransformer;
 import com.google.common.collect.Lists;
 import crypto.HeadlessCryptoScanner.CG;
@@ -17,8 +19,6 @@ import soot.Scene;
 import soot.SceneTransformer;
 import soot.SootMethod;
 import soot.Unit;
-import soot.jimple.toolkits.ide.icfg.BiDiInterproceduralCFG;
-import soot.jimple.toolkits.ide.icfg.JimpleBasedInterproceduralCFG;
 import soot.options.Options;
 
 public class CryptoTransformer extends SceneTransformer {
@@ -37,13 +37,14 @@ public class CryptoTransformer extends SceneTransformer {
   protected void internalTransform(String phaseName, Map<String, String> options) {
     BoomerangPretransformer.v().reset();
     BoomerangPretransformer.v().apply();
-    final JimpleBasedInterproceduralCFG icfg = new JimpleBasedInterproceduralCFG(false);
+    //  final JimpleBasedInterproceduralCFG icfg = new JimpleBasedInterproceduralCFG(false);
+    ObservableICFG<Unit, SootMethod> icfg = new ObservableDynamicICFG(true);
     List<CryptSLRule> rules = getRules();
     final CrySLResultsReporter reporter = new CrySLResultsReporter();
     CryptoScanner scanner =
         new CryptoScanner() {
           @Override
-          public BiDiInterproceduralCFG<Unit, SootMethod> icfg() {
+          public ObservableICFG<Unit, SootMethod> icfg() {
             return icfg;
           }
 

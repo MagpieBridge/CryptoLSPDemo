@@ -15,7 +15,8 @@ public class CryptoAnalysisTargetsTest {
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(Utils.ruleDirPath);
     Collection<AnalysisResult> results =
         analysis.analyze(
-            Collections.singleton(testTargetPath + File.separator + "CogniCryptDemoExample"));
+            Collections.singleton(testTargetPath + File.separator + "CogniCryptDemoExample"),
+            Collections.emptySet());
     assertTrue(results.size() == 10);
     for (AnalysisResult re : results) {
       LogManager.getLogger().error(re.toString());

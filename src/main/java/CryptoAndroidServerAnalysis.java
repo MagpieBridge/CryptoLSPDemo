@@ -39,12 +39,14 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
   private String ruleDirPath;
   private String configPath;
   private String androidPlatform;
+  private boolean firstTimeOpen;
 
   public CryptoAndroidServerAnalysis(
       String ruleDirPath, String configPath, String androidPlatform) {
     this.ruleDirPath = ruleDirPath;
     this.configPath = configPath;
     this.androidPlatform = androidPlatform;
+    this.firstTimeOpen = true;
   }
 
   @Override
@@ -73,7 +75,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
         }
         Path libJar = Paths.get(gendir.toPath().toString(), "out.jar");
         File jar = libJar.toFile();
-        if (!jar.exists()) {
+        if (firstTimeOpen || !jar.exists()) {
           // generate a big out.jar contains all dependencies from the apk file
           Utils.generateJar(
               apkFile,
@@ -83,6 +85,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
           if (jar.exists()) {
             LOG.log(Level.INFO, "Created a out.jar with soot");
           }
+          firstTimeOpen = false;
         }
         libPath.add(libJar.toAbsolutePath().toString());
       }
