@@ -24,6 +24,8 @@ public class CryptoServerAnalysis implements ServerAnalysis {
   private static final Logger LOG = Logger.getLogger("main");
 
   private String ruleDirPath;
+  private Set<String> srcPath;
+  private Set<String> libPath;
 
   public CryptoServerAnalysis(String ruleDirPath) {
     this.ruleDirPath = ruleDirPath;
@@ -34,30 +36,40 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     return "CogniCrypt";
   }
 
-  @Override
-  public void analyze(Collection<Module> files, MagpieServer server) {
-    Set<String> srcPath = null;
-    Optional<IProjectService> opt = server.getProjectService("java");
-    if (opt.isPresent()) {
-      JavaProjectService ps = (JavaProjectService) server.getProjectService("java").get();
-      Set<Path> sourcePath = ps.getSourcePath();
-      if (!sourcePath.isEmpty()) {
-        Set<String> temp = new HashSet<>();
-        sourcePath.stream().forEach(path -> temp.add(path.toString()));
-        srcPath = temp;
+  /**
+   * set up source code path and library path with the project service provided by the server.
+   *
+   * @param server
+   */
+  public void setClassPath(MagpieServer server) {
+    if (srcPath == null) {
+      Optional<IProjectService> opt = server.getProjectService("java");
+      if (opt.isPresent()) {
+        JavaProjectService ps = (JavaProjectService) server.getProjectService("java").get();
+        Set<Path> sourcePath = ps.getSourcePath();
+        if (libPath == null) {
+          libPath = new HashSet<>();
+          ps.getLibraryPath().stream().forEach(path -> libPath.add(path.toString()));
+        }
+        if (!sourcePath.isEmpty()) {
+          Set<String> temp = new HashSet<>();
+          sourcePath.stream().forEach(path -> temp.add(path.toString()));
+          srcPath = temp;
+        }
       }
     }
+  }
+
+  @Override
+  public void analyze(Collection<Module> files, MagpieServer server) {
+    setClassPath(server);
     Collection<AnalysisResult> results = Collections.emptyList();
     if (srcPath != null) {
       // do whole program analysis
-      System.err.println("SOURCE PATH: " + srcPath);
-      results = analyze(srcPath);
+      results = analyze(srcPath, libPath);
     } else {
       // only analyze relevant files
       results = analyze(files);
-    }
-    for (AnalysisResult re : results) {
-      System.err.println(re.toString());
     }
     server.consume(results, source());
   }
@@ -70,19 +82,15 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     return results;
   }
 
-  public Collection<AnalysisResult> analyze(Set<String> srcPath) {
+  public Collection<AnalysisResult> analyze(Set<String> srcPath, Set<String> libPath) {
     CryptoTransformer transformer = new CryptoTransformer(ruleDirPath, false);
-    loadSourceCode(srcPath);
-    runSootPacks(transformer);
-    Collection<AnalysisResult> results = transformer.getAnalysisResults();
-    return results;
-  }
-
-  private void loadSourceCode(Set<String> srcPath) {
-    WalaClassLoader loader = new WalaClassLoader(srcPath);
+    WalaClassLoader loader = new WalaClassLoader(srcPath, libPath, null);
     List<SootClass> sootClasses = loader.getSootClasses();
     JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
     jimpleConverter.convertAllClasses();
+    runSootPacks(transformer);
+    Collection<AnalysisResult> results = transformer.getAnalysisResults();
+    return results;
   }
 
   private void loadSourceCode(Collection<? extends Module> files) {

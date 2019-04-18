@@ -40,7 +40,6 @@ public class CryptoDemoMain {
     String ruleDirPath = new File(config + "/JCA_rules").getAbsolutePath();
     String flowdroidConfigPath = new File(config + "/config").getAbsolutePath();
     MagpieServer server = new MagpieServer();
-    System.out.println("server started");
     String language = "java";
     if (!android) {
       IProjectService javaProjectService = new JavaProjectService();
