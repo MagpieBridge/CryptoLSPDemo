@@ -1,0 +1,12 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Apr 01 22:51:31 CEST 2019
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=Could not transfer artifact de.fraunhofer.iem\:PathExpression\:jar\:sources\:1.0.0 from/to swt-upb (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/)\: Failed to transfer https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/de/fraunhofer/iem/PathExpression/1.0.0/PathExpression-1.0.0-sources.jar. Error code 400, Repository version policy\: SNAPSHOT does not allow version\: 1.0.0
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1554151891674
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/.lastUpdated=1551186671609
+https\://repo.maven.apache.org/maven2/.lastUpdated=1551186133995
+https\://repo.maven.apache.org/maven2/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1552311903884
+@default-swt-upb-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1552311903889
