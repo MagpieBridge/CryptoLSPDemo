@@ -5,11 +5,11 @@ set cryptoRepo=E:\Git\Github\magpie\crypto-lsp-demo
 set tomacatBin=D:\apache-tomcat-9.0.13\bin
 set tomacatWebapps=D:\apache-tomcat-9.0.13\webapps
 
-echo build soot-reloaded
-set "cmdf=mvn -f %sootRepo% com.coveo:fmt-maven-plugin:format"
-call %cmdf%
-set "cmd1=mvn -f %sootRepo% install -DskipTests"
-call %cmd1%
+rem echo build soot-reloaded
+rem set "cmdf=mvn -f %sootRepo% com.coveo:fmt-maven-plugin:format"
+rem  call %cmdf%
+rem set "cmd1=mvn -f %sootRepo% install -DskipTests"
+rem call %cmd1%
 
 set "cmdf=mvn -f %magpieRepo% com.coveo:fmt-maven-plugin:format"
 call %cmdf%

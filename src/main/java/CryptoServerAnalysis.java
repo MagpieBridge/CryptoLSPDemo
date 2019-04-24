@@ -9,12 +9,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.logging.Logger;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.IProjectService;
-import magpiebridge.core.JavaProjectService;
 import magpiebridge.core.MagpieServer;
 import magpiebridge.core.ServerAnalysis;
+import magpiebridge.projectservice.java.JavaProjectService;
 import soot.PackManager;
 import soot.Transform;
 import soot.Transformer;
@@ -26,9 +29,12 @@ public class CryptoServerAnalysis implements ServerAnalysis {
   private String ruleDirPath;
   private Set<String> srcPath;
   private Set<String> libPath;
+  private ExecutorService exeService;
+  private Future<?> last;
 
   public CryptoServerAnalysis(String ruleDirPath) {
     this.ruleDirPath = ruleDirPath;
+    exeService = Executors.newSingleThreadExecutor();
   }
 
   @Override
@@ -62,16 +68,28 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
   @Override
   public void analyze(Collection<Module> files, MagpieServer server) {
-    setClassPath(server);
-    Collection<AnalysisResult> results = Collections.emptyList();
-    if (srcPath != null) {
-      // do whole program analysis
-      results = analyze(srcPath, libPath);
+    if (last == null || last.isDone()) {
+      Future<?> future =
+          exeService.submit(
+              new Runnable() {
+                @Override
+                public void run() {
+                  setClassPath(server);
+                  Collection<AnalysisResult> results = Collections.emptyList();
+                  if (srcPath != null) {
+                    // do whole program analysis
+                    results = analyze(srcPath, libPath);
+                  } else {
+                    // only analyze relevant files
+                    results = analyze(files);
+                  }
+                  server.consume(results, source());
+                }
+              });
+      last = future;
     } else {
-      // only analyze relevant files
-      results = analyze(files);
+      LOG.info("Time between saving files is too short to trigger analysis");
     }
-    server.consume(results, source());
   }
 
   public Collection<AnalysisResult> analyze(Collection<? extends Module> files) {

@@ -1,8 +1,8 @@
 import java.io.File;
-import magpiebridge.core.AndroidProjectService;
 import magpiebridge.core.IProjectService;
-import magpiebridge.core.JavaProjectService;
 import magpiebridge.core.MagpieServer;
+import magpiebridge.projectservice.java.AndroidProjectService;
+import magpiebridge.projectservice.java.JavaProjectService;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
