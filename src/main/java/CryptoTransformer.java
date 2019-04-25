@@ -76,7 +76,7 @@ public class CryptoTransformer extends SceneTransformer {
       }
     }
     if (rules.isEmpty()) {
-      System.out.println(
+      throw new RuntimeException(
           "CogniCrypt did not find any rules to start the analysis for. \n It checked for rules in "
               + ruleDir);
     }

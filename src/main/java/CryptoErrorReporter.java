@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.Kind;
+import magpiebridge.util.SourceCodeReader;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.lsp4j.DiagnosticSeverity;
 import soot.SootClass;
@@ -145,7 +146,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
     else return null;
   }
 
-  public List<Pair<Position, String>> getRelated(AbstractError error) {
+  public List<Pair<Position, String>> getRelated(AbstractError error) throws Exception {
     List<Pair<Position, String>> related = new ArrayList<>();
     if (error instanceof ErrorWithObjectAllocation) {
       ErrorWithObjectAllocation err = (ErrorWithObjectAllocation) error;
@@ -158,7 +159,8 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
             if (tag != null) {
               // just add stmt positions on the data flow path to related for now
               Position stmtPos = tag.getPositionInfo().getStmtPosition();
-              related.add(Pair.make(stmtPos, "related line of code"));
+              String code = SourceCodeReader.getLinesInString(stmtPos);
+              related.add(Pair.make(stmtPos, code));
             }
           }
         }
@@ -175,25 +177,28 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
           Unit stmt = error.getErrorLocation().getUnit().get();
           PositionInfo positionInfo =
               ((PositionInfoTag) stmt.getTag("PositionInfoTag")).getPositionInfo();
-          //          String msg =
-          //              String.format(
-          //                  "%s violating CrySL rule for %s. %s",
-          //                  error.getClass().getSimpleName(),
-          //                  error.getRule().getClassName(),
-          //                  error.toErrorMarkerString());
+          // String msg =
+          // String.format(
+          // "%s violating CrySL rule for %s. %s",
+          // error.getClass().getSimpleName(),
+          // error.getRule().getClassName(),
+          // error.toErrorMarkerString());
           String msg = error.toErrorMarkerString();
-          // TODO. get relatedInfo from crypto analysis.
-          List<Pair<Position, String>> relatedInfo = getRelated(error);
-          Pair<Position, String> repair = getRepair(error, positionInfo);
-          CryptoResult res =
-              new CryptoResult(
-                  Kind.Diagnostic,
-                  positionInfo.getStmtPosition(),
-                  msg,
-                  relatedInfo,
-                  DiagnosticSeverity.Error,
-                  repair);
-          results.add(res);
+          try {
+            List<Pair<Position, String>> relatedInfo = getRelated(error);
+            Pair<Position, String> repair = getRepair(error, positionInfo);
+            CryptoResult res =
+                new CryptoResult(
+                    Kind.Diagnostic,
+                    positionInfo.getStmtPosition(),
+                    msg,
+                    relatedInfo,
+                    DiagnosticSeverity.Error,
+                    repair);
+            results.add(res);
+          } catch (Exception e1) {
+            e1.printStackTrace();
+          }
         }
       }
     }
