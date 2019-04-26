@@ -1,6 +1,5 @@
 import com.ibm.wala.classLoader.Module;
 import de.upb.soot.core.SootClass;
-import de.upb.soot.frontends.java.JimpleConverter;
 import de.upb.soot.frontends.java.WalaClassLoader;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import magpiebridge.converter.JimpleConverter;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.IProjectService;
 import magpiebridge.core.MagpieServer;
