@@ -68,28 +68,28 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
   @Override
   public void analyze(Collection<Module> files, MagpieServer server) {
-    if (last == null || last.isDone()) {
-      Future<?> future =
-          exeService.submit(
-              new Runnable() {
-                @Override
-                public void run() {
-                  setClassPath(server);
-                  Collection<AnalysisResult> results = Collections.emptyList();
-                  if (srcPath != null) {
-                    // do whole program analysis
-                    results = analyze(srcPath, libPath);
-                  } else {
-                    // only analyze relevant files
-                    results = analyze(files);
-                  }
-                  server.consume(results, source());
-                }
-              });
-      last = future;
-    } else {
-      LOG.info("Time between saving files is too short to trigger analysis");
+    if (last != null && !last.isDone()) {
+      last.cancel(false);
+      if (last.isCancelled()) LOG.info("Susscessfully cancelled last analysis and start new");
     }
+    Future<?> future =
+        exeService.submit(
+            new Runnable() {
+              @Override
+              public void run() {
+                setClassPath(server);
+                Collection<AnalysisResult> results = Collections.emptyList();
+                if (srcPath != null) {
+                  // do whole program analysis
+                  results = analyze(srcPath, libPath);
+                } else {
+                  // only analyze relevant files
+                  results = analyze(files);
+                }
+                server.consume(results, source());
+              }
+            });
+    last = future;
   }
 
   public Collection<AnalysisResult> analyze(Collection<? extends Module> files) {
