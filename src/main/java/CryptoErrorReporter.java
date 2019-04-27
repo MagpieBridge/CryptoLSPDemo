@@ -81,16 +81,17 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
             while (i <= splitValues.length) {
               if (i < splitter.getIndex()) {
                 replace.append(splitValues[i]);
-                replace.append(splitter.getSplitter());
+                if (!replace.toString().endsWith(splitter.getSplitter()))
+                  replace.append(splitter.getSplitter());
               } else if (i == splitter.getIndex()) {
                 if (!repairs.isEmpty()) {
                   replace.append(repairs.get(0));
                 }
               } else {
                 if (i < splitValues.length) {
-                  replace.append(splitter.getSplitter());
+                  if (!replace.toString().endsWith(splitter.getSplitter()))
+                    replace.append(splitter.getSplitter());
                   replace.append(splitValues[i]);
-                  if (i != splitValues.length - 1) replace.append(splitter.getSplitter());
                 }
               }
               i++;
@@ -177,13 +178,13 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
           Unit stmt = error.getErrorLocation().getUnit().get();
           PositionInfo positionInfo =
               ((PositionInfoTag) stmt.getTag("PositionInfoTag")).getPositionInfo();
-          // String msg =
-          // String.format(
-          // "%s violating CrySL rule for %s. %s",
-          // error.getClass().getSimpleName(),
-          // error.getRule().getClassName(),
-          // error.toErrorMarkerString());
-          String msg = error.toErrorMarkerString();
+          String msg =
+              String.format(
+                  "%s violating CrySL rule for %s. %s",
+                  error.getClass().getSimpleName(),
+                  error.getRule().getClassName(),
+                  error.toErrorMarkerString());
+          // String msg = error.toErrorMarkerString();
           try {
             List<Pair<Position, String>> relatedInfo = getRelated(error);
             Pair<Position, String> repair = getRepair(error, positionInfo);
