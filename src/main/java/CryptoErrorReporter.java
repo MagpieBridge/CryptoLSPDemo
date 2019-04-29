@@ -17,6 +17,7 @@ import crypto.rules.CryptSLValueConstraint;
 import de.upb.soot.jimple.basic.PositionInfo;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -178,15 +179,15 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
           Unit stmt = error.getErrorLocation().getUnit().get();
           PositionInfo positionInfo =
               ((PositionInfoTag) stmt.getTag("PositionInfoTag")).getPositionInfo();
-          String msg =
-              String.format(
-                  "%s violating CrySL rule for %s. %s",
-                  error.getClass().getSimpleName(),
-                  error.getRule().getClassName(),
-                  error.toErrorMarkerString());
-          // String msg = error.toErrorMarkerString();
+          // String msg =
+          // String.format(
+          // "%s violating CrySL rule for %s. %s",
+          // error.getClass().getSimpleName(),
+          // error.getRule().getClassName(),
+          // error.toErrorMarkerString());
+          String msg = error.toErrorMarkerString();
           try {
-            List<Pair<Position, String>> relatedInfo = getRelated(error);
+            List<Pair<Position, String>> relatedInfo = Collections.emptyList();
             Pair<Position, String> repair = getRepair(error, positionInfo);
             CryptoResult res =
                 new CryptoResult(

@@ -23,7 +23,7 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "Crypto LSP Demo",
+			"title": "Analyzer X",
 			"properties": {
 				"crypto-lsp-demo.trace.server": {
 					"scope": "window",
