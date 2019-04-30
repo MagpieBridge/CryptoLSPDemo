@@ -38,7 +38,7 @@ public class CryptoDemoMain {
       helper.printHelp(cmdLineSyntax, options);
     } else config = cmd.getOptionValue("c");
     String ruleDirPath = new File(config + "/JCA_rules").getAbsolutePath();
-    String flowdroidConfigPath = new File(config + "/config").getAbsolutePath();
+    String flowdroidConfigPath = new File(config).getAbsolutePath();
     MagpieServer server = new MagpieServer();
     String language = "java";
     if (!android) {
