@@ -199,7 +199,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
                     repair);
             results.add(res);
           } catch (Exception e1) {
-            e1.printStackTrace();
+            throw new RuntimeException(e1);
           }
         }
       }
