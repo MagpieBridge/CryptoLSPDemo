@@ -147,7 +147,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
       flowDroid.setSootConfig(sootConfigForAndroid);
       flowDroid.constructCallgraph();
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
