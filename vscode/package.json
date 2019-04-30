@@ -1,6 +1,6 @@
 {
-	"name": "crypto-lsp-demo",
-	"description": "A language server example for CogniCrypt",
+	"name": "analyzer-x-demo",
+	"description": "A language server example for Analyzer X",
 	"author": "Linghui Luo ",
 	"license": "EPL-2.0",
 	"version": "0.0.1",
