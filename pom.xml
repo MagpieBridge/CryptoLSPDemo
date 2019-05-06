@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		 <magpiebridge.version>0.0.1-SNAPSHOT</magpiebridge.version>
-		<futuresoot.version>4.0.0.2</futuresoot.version>
+		<futuresoot.version>4.0.0.3</futuresoot.version>
    		<flowdroid.version>2.7.1</flowdroid.version>
 	</properties>
 

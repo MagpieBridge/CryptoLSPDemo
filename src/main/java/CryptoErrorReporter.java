@@ -189,6 +189,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
           try {
             List<Pair<Position, String>> relatedInfo = Collections.emptyList();
             Pair<Position, String> repair = getRepair(error, positionInfo);
+            String code = SourceCodeReader.getLinesInString(positionInfo.getStmtPosition());
             CryptoResult res =
                 new CryptoResult(
                     Kind.Diagnostic,
@@ -196,7 +197,8 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
                     msg,
                     relatedInfo,
                     DiagnosticSeverity.Error,
-                    repair);
+                    repair,
+                    code);
             results.add(res);
           } catch (Exception e1) {
             throw new RuntimeException(e1);

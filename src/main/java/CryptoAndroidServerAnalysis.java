@@ -51,7 +51,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
 
   @Override
   public String source() {
-    return "CogniCrypt";
+    return "Analyzer X";
   }
 
   @Override

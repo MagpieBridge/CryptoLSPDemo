@@ -28,5 +28,5 @@ set "cmd4=cd vscode"
 call %cmd4%
 set "cmd4=vsce package"
 call %cmd4%
-set "cmd4=code --install-extension crypto-lsp-demo-0.0.1.vsix"
+set "cmd4=code --install-extension analyzer-x-demo-0.0.1.vsix"
 call %cmd4%
