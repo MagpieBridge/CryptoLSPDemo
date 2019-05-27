@@ -169,3 +169,9 @@ To execute the demo in vscode:
 	
 **Insecure crypto warning in VSCode**
 <img src="doc/VSCodeDemo.png" width="800">
+
+## Extensions of this demo 
+[Path Conditions to Enhance Comprehension of Cryptographic Misuses](https://github.com/SvenEV/CryptoLSPDemo/tree/pathconditions) by Sven Erik Vinkemeier
+
+## Contact 
+&#x2709; linghui[at]outlook.de
