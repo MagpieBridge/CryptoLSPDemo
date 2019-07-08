@@ -1,5 +1,6 @@
 # CryptoLSPDemo[![Build Status](https://travis-ci.com/MagpieBridge/CryptoLSPDemo.svg?branch=master)](https://travis-ci.com/MagpieBridge/CryptoLSPDemo)
-This project demonstrates integrating CogniCrypt into different IDEs with MagpieBridge.
+This project demonstrates integrating CogniCrypt into different IDEs with [MagpieBridge](https://github.com/MagpieBridge/MagpieBridge).
+
 
 ## Tested IDEs/Editors
 - Eclipse
