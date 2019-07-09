@@ -12,12 +12,9 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 
 **You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git 
-- install with: 
-	-- ``gradlew build -x test``
-	-- ``gradlew install -Dmaven.repo.local="path\to\your\local\m2\repository"``
+- run ``gradlew build -x test``
+- run ``gradlew install -Dmaven.repo.local="path\to\your\local\m2\repository"``
 2. install CryptoAnalysis.
-- check out "master" branch from WPDPS https://github.com/MagpieBridge/WPDS.git (used by CryptoAnalysis)
-- install with  ``mvn install -DskipTests`` 
 - check out "master" branch from CryptoAnalysis https://github.com/MagpieBridge/CryptoAnalysis.git
 - install with  ``mvn install -DskipTests`` 
 3. check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
