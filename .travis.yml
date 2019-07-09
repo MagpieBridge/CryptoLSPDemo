@@ -1,13 +1,8 @@
 language: java
 before_install:
-  - git clone --branch=websockets https://github.com/MagpieBridge/lsp4j $HOME/build/MagpieBridge/lsp4j
-  - cd $HOME/build/MagpieBridge/lsp4j
-  - gradle build -x test
-  - gradle install -Dmaven.repo.local=$HOME/.m2/repository
-    
-  - git clone --branch=master https://github.com/MagpieBridge/CryptoAnalysis.git $HOME/build/MagpieBridge/CryptoAnalysis
-  - cd $HOME/build/MagpieBridge/CryptoAnalysis/CryptoAnalysis
-  - mvn install -DskipTests
+  - git clone --branch=mvn https://github.com/MagpieBridge/CryptoLSPDemo.git  $HOME/build/MagpieBridge/mvnRepo
+  - cd $HOME/build/MagpieBridge/mvnRepo
+  - cp -r repository $HOME/.m2/repository 
   
   - git clone --branch=lsp https://github.com/linghuiluo/FlowDroid.git $HOME/build/MagpieBridge/FlowDroid
   - cd $HOME/build/MagpieBridge/FlowDroid
