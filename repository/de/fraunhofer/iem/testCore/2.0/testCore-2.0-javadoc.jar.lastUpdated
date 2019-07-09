@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Apr 18 23:42:31 CEST 2019
+@default-soot-snapshot-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1555623750931
+https\://repo.maven.apache.org/maven2/.lastUpdated=1555623751064
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=Could not transfer artifact de.fraunhofer.iem\:testCore\:jar\:javadoc\:2.0 from/to soot-snapshot (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/)\: Failed to transfer https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/de/fraunhofer/iem/testCore/2.0/testCore-2.0-javadoc.jar. Error code 400, Repository version policy\: SNAPSHOT does not allow version\: 2.0
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1555623750890
+https\://repo.maven.apache.org/maven2/.error=
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=

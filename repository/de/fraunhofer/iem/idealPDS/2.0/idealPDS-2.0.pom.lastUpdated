@@ -1,0 +1,9 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Apr 18 20:25:35 CEST 2019
+@default-soot-snapshot-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1555611935110
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1555611935466
+https\://repo.maven.apache.org/maven2/.lastUpdated=1555611935299
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=Could not transfer artifact de.fraunhofer.iem\:idealPDS\:pom\:2.0 from/to soot-snapshot (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/)\: Failed to transfer file https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/de/fraunhofer/iem/idealPDS/2.0/idealPDS-2.0.pom with status code 400
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1555611934967
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
+https\://repo.maven.apache.org/maven2/.error=

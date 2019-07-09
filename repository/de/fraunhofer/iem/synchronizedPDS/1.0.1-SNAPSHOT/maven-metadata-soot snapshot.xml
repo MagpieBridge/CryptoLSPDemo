@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>de.fraunhofer.iem</groupId>
+  <artifactId>synchronizedPDS</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190226.163002</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20190226163002</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0.1-20190226.163002-1</value>
+        <updated>20190226163002</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.1-20190226.163002-1</value>
+        <updated>20190226163002</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

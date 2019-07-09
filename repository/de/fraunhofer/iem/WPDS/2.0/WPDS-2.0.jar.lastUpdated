@@ -1,0 +1,9 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Apr 18 20:25:41 CEST 2019
+@default-soot-snapshot-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1555611940011
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1555611941010
+https\://repo.maven.apache.org/maven2/.lastUpdated=1555611940316
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=Could not transfer artifact de.fraunhofer.iem\:WPDS\:jar\:2.0 from/to soot-snapshot (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/)\: Failed to transfer file https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/de/fraunhofer/iem/WPDS/2.0/WPDS-2.0.jar with status code 400
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1555611939838
+https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
+https\://repo.maven.apache.org/maven2/.error=

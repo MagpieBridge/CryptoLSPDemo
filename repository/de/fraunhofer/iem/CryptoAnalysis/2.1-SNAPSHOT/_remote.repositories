@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Apr 18 20:25:39 CEST 2019
+CryptoAnalysis-2.1-SNAPSHOT.jar>=
+CryptoAnalysis-2.1-20190418.112845-4.pom>soot-snapshot=
+CryptoAnalysis-2.1-SNAPSHOT-jar-with-dependencies.jar>=
+CryptoAnalysis-2.1-SNAPSHOT.pom>=
+CryptoAnalysis-2.1-20190418.112845-4.jar>soot-snapshot=

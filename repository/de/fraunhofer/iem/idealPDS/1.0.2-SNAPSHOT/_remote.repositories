@@ -1,4 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Tue Feb 26 14:01:38 CET 2019
+#Mon Mar 04 11:55:38 CET 2019
+idealPDS-1.0.2-20190226.182229-11.jar>soot-snapshot=
+idealPDS-1.0.2-20190226.182229-11.jar>swt-upb=
 idealPDS-1.0.2-SNAPSHOT.pom>=
+idealPDS-1.0.2-20190226.182229-11.pom>swt-upb=
 idealPDS-1.0.2-SNAPSHOT.jar>=
+idealPDS-1.0.2-20190226.182229-11.pom>soot-snapshot=
