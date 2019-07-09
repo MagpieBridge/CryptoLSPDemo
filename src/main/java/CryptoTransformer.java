@@ -1,36 +1,35 @@
-import com.google.common.collect.Lists;
-
-import java.io.File;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import soot.G;
-import soot.Scene;
-import soot.SceneTransformer;
-import soot.SootMethod;
-import soot.Unit;
-import soot.jimple.toolkits.ide.icfg.BiDiInterproceduralCFG;
-import soot.jimple.toolkits.ide.icfg.JimpleBasedInterproceduralCFG;
-import soot.options.Options;
-
+import boomerang.callgraph.ObservableDynamicICFG;
+import boomerang.callgraph.ObservableICFG;
 import boomerang.preanalysis.BoomerangPretransformer;
+import com.google.common.collect.Lists;
 import crypto.HeadlessCryptoScanner.CG;
 import crypto.Utils;
 import crypto.analysis.CrySLResultsReporter;
 import crypto.analysis.CryptoScanner;
 import crypto.rules.CryptSLRule;
 import crypto.rules.CryptSLRuleReader;
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import magpiebridge.core.AnalysisResult;
+import soot.G;
+import soot.Scene;
+import soot.SceneTransformer;
+import soot.SootMethod;
+import soot.Unit;
+import soot.options.Options;
 
 public class CryptoTransformer extends SceneTransformer {
   private String ruleDir;
   private CryptoErrorReporter errorReporter;
+  private boolean isAndroid;
 
-  public CryptoTransformer(String ruleDir) {
+  public CryptoTransformer(String ruleDir, boolean isAndroid) {
     this.ruleDir = ruleDir;
-    initilizeSootOptions();
+    this.isAndroid = isAndroid;
+    if (!isAndroid) initilizeSootOptions();
     this.errorReporter = new CryptoErrorReporter();
   }
 
@@ -38,30 +37,32 @@ public class CryptoTransformer extends SceneTransformer {
   protected void internalTransform(String phaseName, Map<String, String> options) {
     BoomerangPretransformer.v().reset();
     BoomerangPretransformer.v().apply();
-    final JimpleBasedInterproceduralCFG icfg = new JimpleBasedInterproceduralCFG(false);
+    //  final JimpleBasedInterproceduralCFG icfg = new JimpleBasedInterproceduralCFG(false);
+    ObservableICFG<Unit, SootMethod> icfg = new ObservableDynamicICFG(true);
     List<CryptSLRule> rules = getRules();
     final CrySLResultsReporter reporter = new CrySLResultsReporter();
-    CryptoScanner scanner = new CryptoScanner() {
-      @Override
-      public BiDiInterproceduralCFG<Unit, SootMethod> icfg() {
-        return icfg;
-      }
+    CryptoScanner scanner =
+        new CryptoScanner() {
+          @Override
+          public ObservableICFG<Unit, SootMethod> icfg() {
+            return icfg;
+          }
 
-      @Override
-      public CrySLResultsReporter getAnalysisListener() {
-        return reporter;
-      }
+          @Override
+          public CrySLResultsReporter getAnalysisListener() {
+            return reporter;
+          }
 
-      @Override
-      public boolean isCommandLineMode() {
-        return true;
-      }
+          @Override
+          public boolean isCommandLineMode() {
+            return true;
+          }
 
-      @Override
-      public boolean rulesInSrcFormat() {
-        return false;
-      }
-    };
+          @Override
+          public boolean rulesInSrcFormat() {
+            return false;
+          }
+        };
     reporter.addReportListener(errorReporter);
     scanner.scan(rules);
   }
@@ -75,8 +76,9 @@ public class CryptoTransformer extends SceneTransformer {
       }
     }
     if (rules.isEmpty()) {
-      System.out
-          .println("CogniCrypt did not find any rules to start the analysis for. \n It checked for rules in " + ruleDir);
+      throw new RuntimeException(
+          "CogniCrypt did not find any rules to start the analysis for. \n It checked for rules in "
+              + ruleDir);
     }
     return rules;
   }
@@ -118,8 +120,8 @@ public class CryptoTransformer extends SceneTransformer {
     Options.v().set_output_format(Options.output_format_none);
     Options.v().set_no_bodies_for_excluded(true);
     Options.v().set_allow_phantom_refs(true);
-    Options.v().set_keep_line_number(true);
-    Options.v().set_prepend_classpath(true);// append rt.jar to soot class path
+    // Options.v().set_keep_line_number(true);
+    Options.v().set_prepend_classpath(true); // append rt.jar to soot class path
     Options.v().set_soot_classpath(File.pathSeparator + pathToJCE());
     Options.v().set_include(getIncludeList());
     Options.v().set_exclude(getExcludeList());

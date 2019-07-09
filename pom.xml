@@ -9,10 +9,13 @@
 	<packaging>jar</packaging>
 
 	<name>crypto-lsp-demo</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/MagpieBridge/CryptoLSPDemo</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		 <magpiebridge.version>0.0.1-SNAPSHOT</magpiebridge.version>
+		<futuresoot.version>4.0.0.2</futuresoot.version>
+   		<flowdroid.version>2.7.1</flowdroid.version>
 	</properties>
 
 	<dependencies>
@@ -37,24 +40,24 @@
 		<dependency>
 			<groupId>magpiebridge</groupId>
 			<artifactId>magpiebridge</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${magpiebridge.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
 		</dependency>
-		<!-- soot-reloaded -->
+		<!-- futuresoot -->
 		<dependency>
 			<groupId>de.upb</groupId>
 			<artifactId>Soot</artifactId>
-			<version>4.0.0-SNAPSHOT</version>
+			<version>${futuresoot.version}</version>
 		</dependency>
 		<!-- CrytoAnalysis -->
 		<dependency>
 			<groupId>de.fraunhofer.iem</groupId>
 			<artifactId>CryptoAnalysis</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>2.1.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.eclipse.core</groupId>
@@ -68,7 +71,7 @@
 			<artifactId>org.eclipse.lsp4j.websockets</artifactId>
 			<version>0.6.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
+		 <dependency>
 			<groupId>org.eclipse.platform</groupId>
 			<artifactId>org.eclipse.core.runtime</artifactId>
 			<version>3.15.0</version>
@@ -77,6 +80,17 @@
 			<groupId>org.eclipse.jdt</groupId>
 			<artifactId>org.eclipse.jdt.core</artifactId>
 			<version>3.15.0</version>
+		</dependency> 
+		<!-- flowdroid(used for Android) -->
+		<dependency>
+			<groupId>de.tud.sse</groupId>
+			<artifactId>soot-infoflow</artifactId>
+			<version>${flowdroid.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tud.sse</groupId>
+			<artifactId>soot-infoflow-android</artifactId>
+			<version>${flowdroid.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -146,13 +160,30 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!-- <plugin>
+				<groupId>com.coveo</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
 		</plugins>
 	</build>
 	<repositories>
 		<repository>
-			<id>swt-upb</id>
+			<id>wala</id>
+			<name>wala snapshots</name>
+			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/wala/</url>
+		</repository>
+		<repository>
+			<id>soot-snapshot</id>
 			<name>soot snapshots</name>
-			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/</url>
+			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/</url>
 		</repository>
 	</repositories>
 </project>
