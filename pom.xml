@@ -16,8 +16,7 @@
 		 <magpiebridge.version>0.0.1-SNAPSHOT</magpiebridge.version>
 		<futuresoot.version>4.0.0.3</futuresoot.version>
    		<flowdroid.version>2.7.1</flowdroid.version>
-   		<crypto.version>1.0.0-SNAPSHOT</crypto.version>
-   	<!-- 	<crypto.version>2.1.1</crypto.version> -->
+		<crypto.version>2.1.1</crypto.version> 
 	</properties>
 
 	<dependencies>
