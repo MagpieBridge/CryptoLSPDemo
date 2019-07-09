@@ -47,3 +47,5 @@ src/test/resources/InsecureBank/app/\.settings/org\.eclipse\.buildship\.core\.pr
 src/test/resources/DemoAllErrors/\.idea/workspace\.xml
 
 src/test/resources/DemoProject/target/classes/META-INF/maven/DemoProject/DemoProject/pom\.properties
+
+vscode/CogniCryptLSP-demo\.jar

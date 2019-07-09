@@ -1,8 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Apr 08 09:17:25 CEST 2019
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=
-@default-soot-release-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1554151904242
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1554707845665
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.error=Could not transfer artifact de.fraunhofer.iem\:idealPDS\:jar\:javadoc\:2.1-SNAPSHOT from/to soot-release (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/)\: Failed to transfer https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/de/fraunhofer/iem/idealPDS/2.1-SNAPSHOT/idealPDS-2.1-SNAPSHOT-javadoc.jar. Error code 400, Repository version policy\: RELEASE does not allow version\: 2.1-SNAPSHOT
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1554151904208

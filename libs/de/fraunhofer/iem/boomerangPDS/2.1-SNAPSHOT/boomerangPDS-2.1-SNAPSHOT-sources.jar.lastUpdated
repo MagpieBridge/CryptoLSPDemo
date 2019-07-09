@@ -1,8 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Apr 01 22:51:58 CEST 2019
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.error=
-@default-soot-release-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.lastUpdated=1554151891516
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.lastUpdated=1554151918125
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/.error=Could not transfer artifact de.fraunhofer.iem\:boomerangPDS\:jar\:sources\:2.1-SNAPSHOT from/to soot-release (https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/)\: Failed to transfer https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/de/fraunhofer/iem/boomerangPDS/2.1-SNAPSHOT/boomerangPDS-2.1-SNAPSHOT-sources.jar. Error code 400, Repository version policy\: RELEASE does not allow version\: 2.1-SNAPSHOT
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/wala/.error=
-https\://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/.lastUpdated=1554151891446
