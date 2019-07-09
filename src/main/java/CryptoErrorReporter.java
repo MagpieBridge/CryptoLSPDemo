@@ -45,7 +45,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
 
   /**
    * returns repair for different kinds of errors.
-   * 
+   *
    * @param error
    * @param positionInfo
    * @return

@@ -9,7 +9,6 @@ import magpiebridge.core.AnalysisResult;
 import magpiebridge.projectservice.java.InferSourcePath;
 import org.apache.logging.log4j.LogManager;
 import org.junit.Ignore;
-import org.junit.Test;
 
 public class CryptoInsecureBankAndroidTest {
   @Ignore
