@@ -1,7 +1,5 @@
 # CryptoLSPDemo[![Build Status](https://travis-ci.com/MagpieBridge/CryptoLSPDemo.svg?branch=master)](https://travis-ci.com/MagpieBridge/CryptoLSPDemo)
-This project demonstrates integrating CogniCrypt into different IDEs with [MagpieBridge](https://github.com/MagpieBridge/MagpieBridge).
-
-
+Formatting the code with ``mvn com.coveo:fmt-maven-plugin:format`` before git push 
 ## Tested IDEs/Editors
 - Eclipse
 - IntelliJ
@@ -171,9 +169,3 @@ To execute the demo in vscode:
 	
 **Insecure crypto warning in VSCode**
 <img src="doc/VSCodeDemo.png" width="800">
-
-## Extensions of this demo 
-[Path Conditions to Enhance Comprehension of Cryptographic Misuses](https://github.com/SvenEV/CryptoLSPDemo/tree/pathconditions) by Sven Erik Vinkemeier
-
-## Contact 
-&#x2709; linghui[at]outlook.de
