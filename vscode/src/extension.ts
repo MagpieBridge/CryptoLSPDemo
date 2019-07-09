@@ -22,7 +22,7 @@ export function activate(context: ExtensionContext) {
     };
     
     // Create the language client and start the client.
-    let lc : LanguageClient = new LanguageClient('crypto-lsp-demo','Crypto LSP Demo Server', serverOptions, clientOptions);
+    let lc : LanguageClient = new LanguageClient('analyzer-x-demo','Analyzer X', serverOptions, clientOptions);
     lc.start();
 }
 

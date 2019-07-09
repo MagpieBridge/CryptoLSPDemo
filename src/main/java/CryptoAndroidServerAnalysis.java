@@ -51,7 +51,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
 
   @Override
   public String source() {
-    return "CogniCrypt";
+    return "Analyzer X";
   }
 
   @Override
@@ -94,9 +94,6 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
     if (!srcPath.isEmpty()) {
       // do whole program analysis
       results = analyze(androidPlatform, apkFile, srcPath, libPath);
-    }
-    for (AnalysisResult re : results) {
-      System.err.println(re.toString());
     }
     server.consume(results, source());
   }
@@ -147,7 +144,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
       flowDroid.setSootConfig(sootConfigForAndroid);
       flowDroid.constructCallgraph();
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
