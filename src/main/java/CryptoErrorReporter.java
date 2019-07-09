@@ -43,6 +43,13 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
     results = new ArrayList<AnalysisResult>();
   }
 
+  /**
+   * returns repair for different kinds of errors.
+   * 
+   * @param error
+   * @param positionInfo
+   * @return
+   */
   public Pair<Position, String> getRepair(AbstractError error, PositionInfo positionInfo) {
     StringBuilder replace = new StringBuilder();
     Position pos = null;

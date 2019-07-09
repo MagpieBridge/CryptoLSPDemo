@@ -6,7 +6,7 @@ import soot.Main;
 public class Utils {
 
   public static String ruleDirPath = new File("config/JCA_rules").getAbsolutePath();
-  public static String configPath = new File("config/config").getAbsolutePath();
+  public static String configPath = new File("config").getAbsolutePath();
 
   public static void generateJar(
       String apk, String androidPlatform, String outputDir, Set<String> excludedClasses) {

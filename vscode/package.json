@@ -1,6 +1,6 @@
 {
-	"name": "analyzer-x-demo",
-	"description": "A language server example for Analyzer X",
+	"name": "CogniCryptLSP",
+	"description": "A language server example for CogniCrypt",
 	"author": "Linghui Luo ",
 	"license": "EPL-2.0",
 	"version": "0.0.1",
@@ -23,9 +23,9 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "Analyzer X",
+			"title": "CogniCryptLSP",
 			"properties": {
-				"analyzer-x-demo.trace.server": {
+				"CogniCryptLSP.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
@@ -40,7 +40,7 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "cp ../target/crypto-lsp-demo-0.0.1-SNAPSHOT.jar  crypto-lsp-demo.jar && rm -rf config && cp -r ../config config && npm run compile",
+		"vscode:prepublish": "cp ../target/crypto-lsp-demo-0.0.1-SNAPSHOT.jar  CogniCryptLSP-demo.jar && rm -rf config && cp -r ../config config && npm run compile",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
 		"postinstall": "node ./node_modules/vscode/bin/install"

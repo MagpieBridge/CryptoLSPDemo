@@ -7,7 +7,7 @@ import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-lan
 
 export function activate(context: ExtensionContext) {
     let script = 'java';
-    let args = ['-jar',context.asAbsolutePath(path.join('crypto-lsp-demo.jar')),"-c", context.asAbsolutePath('./config')];
+    let args = ['-jar',context.asAbsolutePath(path.join('CogniCryptLSP-demo.jar')),"-c", context.asAbsolutePath('./config')];
     let serverOptions: ServerOptions = {
         run : { command: script, args: args },
         debug: { command: script, args: args} //, options: { env: createDebugEnv() }
@@ -22,7 +22,7 @@ export function activate(context: ExtensionContext) {
     };
     
     // Create the language client and start the client.
-    let lc : LanguageClient = new LanguageClient('analyzer-x-demo','Analyzer X', serverOptions, clientOptions);
+    let lc : LanguageClient = new LanguageClient('CogniCryptLSP-demo','CogniCrypt', serverOptions, clientOptions);
     lc.start();
 }
 

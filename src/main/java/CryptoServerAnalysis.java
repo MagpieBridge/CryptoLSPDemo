@@ -39,7 +39,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
   @Override
   public String source() {
-    return "Analyzer X";
+    return "CogniCrypt";
   }
 
   /**

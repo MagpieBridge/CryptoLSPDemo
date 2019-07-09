@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +15,7 @@ public class DemoAllErrorsTest {
     CryptoServerAnalysis analysis = new CryptoServerAnalysis(Utils.ruleDirPath);
     Collection<AnalysisResult> results =
         analysis.analyze(Collections.singleton(testTargetPath), Collections.emptySet());
+    assertTrue(results.size() == 17);
     for (AnalysisResult re : results) {
       LogManager.getLogger().error(re.toString());
     }
