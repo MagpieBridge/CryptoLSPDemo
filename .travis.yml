@@ -1,6 +1,6 @@
 language: java
 before_install:
-  - git clone --branch=websockets https://github.com/MagpieBridge/lsp4j.git $HOME/build/MagpieBridge/lsp4j.git
+  - git clone --branch=websockets https://github.com/MagpieBridge/lsp4j $HOME/build/MagpieBridge/lsp4j
   - cd $HOME/build/MagpieBridge/lsp4j
   - gradle build -x test
   - gradle install -Dmaven.repo.local=$HOME/.m2
