@@ -1,5 +1,9 @@
 language: java
 before_install:
+  - git clone --branch=master https://github.com/MagpieBridge/CryptoAnalysis.git $HOME/build/MagpieBridge/CryptoAnalysis
+  - cd $HOME/build/MagpieBridge/CryptoAnalysis
+  - mvn install -DskipTests
+  
   - git clone --branch=lsp https://github.com/linghuiluo/FlowDroid.git $HOME/build/MagpieBridge/FlowDroid
   - cd $HOME/build/MagpieBridge/FlowDroid
   - mvn install -DskipTests
