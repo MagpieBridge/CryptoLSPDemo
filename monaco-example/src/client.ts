@@ -22,24 +22,45 @@ monaco.languages.register({
 });
 
 // create Monaco editor
-const value = `package example;
-
+const value = `import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
 
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
+public class RSA {
+  private PublicKey publicKey;
+  private PrivateKey privateKey;
 
-/**
- * This code contains a misuse example CogniCrypt_SAST of a Cipher object. 
- * CogniCrypt_SAST reports that the string argument to Cipher.getInstance("AES/ECB/PKCS5Padding") does not correspond the CrySL specification. 
- *
- */
-public class ConstraintErrorExample {
-	public static void main(String...args) throws NoSuchAlgorithmException, NoSuchPaddingException {
-		Cipher instance = Cipher.getInstance("AES/ECB/PKCS5Padding");  
-	}
+  public RSA() throws NoSuchAlgorithmException {
+    KeyPairGenerator kpgen = KeyPairGenerator.getInstance("RSA");
+    kpgen.initialize(512);
+    KeyPair keyPair = kpgen.generateKeyPair();
+    this.privateKey = keyPair.getPrivate();
+    this.publicKey = keyPair.getPublic();
+  }
+
+  public byte[] sign(String message) throws InvalidKeyException, NoSuchAlgorithmException, SignatureException {
+    Signature instance = Signature.getInstance("SHA256withRSA");
+    byte[] bytes = message.getBytes();
+    instance.update(bytes); 
+    instance.sign();
+    return bytes;
+  }
+
+  public boolean verify(String message, byte[] signature)
+      throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+    Signature instance = Signature.getInstance("SHA256withRSA");
+    instance.initVerify(publicKey);
+    instance.update(message.getBytes());
+    boolean isVerfied = instance.verify(signature);
+    return isVerfied;
+  } 
+  
 }
-
 `
 
 const editor = monaco.editor.create(document.getElementById("container")!, {

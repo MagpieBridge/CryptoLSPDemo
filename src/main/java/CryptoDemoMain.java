@@ -1,6 +1,7 @@
 import java.io.File;
 import magpiebridge.core.IProjectService;
 import magpiebridge.core.MagpieServer;
+import magpiebridge.core.ServerConfiguration;
 import magpiebridge.projectservice.java.AndroidProjectService;
 import magpiebridge.projectservice.java.JavaProjectService;
 import org.apache.commons.cli.CommandLine;
@@ -39,7 +40,7 @@ public class CryptoDemoMain {
     } else config = cmd.getOptionValue("c");
     String ruleDirPath = new File(config + "/JCA_rules").getAbsolutePath();
     String flowdroidConfigPath = new File(config).getAbsolutePath();
-    MagpieServer server = new MagpieServer();
+    MagpieServer server = new MagpieServer(new ServerConfiguration());
     String language = "java";
     if (!android) {
       IProjectService javaProjectService = new JavaProjectService();

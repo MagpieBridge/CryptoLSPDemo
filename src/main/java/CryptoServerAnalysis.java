@@ -1,6 +1,7 @@
 import com.ibm.wala.classLoader.Module;
 import de.upb.soot.core.SootClass;
 import de.upb.soot.frontends.java.WalaClassLoader;
+import java.io.File;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
   private Set<String> libPath;
   private ExecutorService exeService;
   private Future<?> last;
+  private boolean webSocketOn = false;
 
   public CryptoServerAnalysis(String ruleDirPath) {
     this.ruleDirPath = ruleDirPath;
@@ -68,33 +70,58 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
   @Override
   public void analyze(Collection<Module> files, MagpieServer server) {
-    if (last != null && !last.isDone()) {
-      last.cancel(false);
-      if (last.isCancelled()) LOG.info("Susscessfully cancelled last analysis and start new");
+    if (webSocketOn) {
+      setClassPath(server);
+      Collection<AnalysisResult> results = Collections.emptyList();
+      if (srcPath != null) {
+        // do whole program analysis
+        results = analyze(srcPath, libPath);
+      } else {
+
+        if (libPath == null)
+          libPath = new HashSet<>();
+        libPath.add(System.getProperty("java.home") + File.separator + "lib" + File.separator + "jce.jar");
+        // only analyze relevant files
+        LOG.info("Analyzing files , libPath " + libPath);
+        results = analyze(files, libPath);
+        LOG.info("Results: " + results);
+      }
+      server.consume(results, source());
+    } else {
+      if (last != null && !last.isDone()) {
+        last.cancel(false);
+        if (last.isCancelled())
+          LOG.info("Susscessfully cancelled last analysis and start new");
+      }
+      Future<?> future = exeService.submit(new Runnable() {
+        @Override
+        public void run() {
+          setClassPath(server);
+          Collection<AnalysisResult> results = Collections.emptyList();
+          if (srcPath != null) {
+            // do whole program analysis
+            results = analyze(srcPath, libPath);
+          } else {
+
+            if (libPath == null)
+              libPath = new HashSet<>();
+            libPath.add(System.getProperty("java.home") + File.separator + "lib" + File.separator + "jce.jar");
+            // only analyze relevant files
+            LOG.info("Analyzing files , libPath " + libPath);
+            results = analyze(files, libPath);
+            LOG.info("Results: " + results);
+          }
+          server.consume(results, source());
+        }
+      });
+      last = future;
+
     }
-    Future<?> future =
-        exeService.submit(
-            new Runnable() {
-              @Override
-              public void run() {
-                setClassPath(server);
-                Collection<AnalysisResult> results = Collections.emptyList();
-                if (srcPath != null) {
-                  // do whole program analysis
-                  results = analyze(srcPath, libPath);
-                } else {
-                  // only analyze relevant files
-                  results = analyze(files);
-                }
-                server.consume(results, source());
-              }
-            });
-    last = future;
   }
 
-  public Collection<AnalysisResult> analyze(Collection<? extends Module> files) {
+  public Collection<AnalysisResult> analyze(Collection<? extends Module> files, Set<String> libPath) {
     CryptoTransformer transformer = new CryptoTransformer(ruleDirPath, false);
-    loadSourceCode(files);
+    loadSourceCode(files, libPath);
     runSootPacks(transformer);
     Collection<AnalysisResult> results = transformer.getAnalysisResults();
     return results;
@@ -111,11 +138,13 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     return results;
   }
 
-  private void loadSourceCode(Collection<? extends Module> files) {
+  private void loadSourceCode(Collection<? extends Module> files, Set<String> libPath) {
     // use WALA source-code front end to load classes
-    WalaClassLoader loader = new WalaClassLoader(files);
+    WalaClassLoader loader = new WalaClassLoader(files, libPath);
     List<SootClass> sootClasses = loader.getSootClasses();
+    LOG.info("WALA loaded files");
     JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
+    LOG.info("Jimple converted");
     jimpleConverter.convertAllClasses();
   }
 
