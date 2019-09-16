@@ -191,7 +191,7 @@ To execute the demo in vscode:
 2. Open a Java file will trigger the CogniCrypt LSP server to run.
 
 **Insecure crypto warning in Emacs**
-<img src="doc/emacs.png" width="800">
+<img src="doc/emacsDemo.png" width="800">
 
 ## Extensions of this demo 
 [Path Conditions to Enhance Comprehension of Cryptographic Misuses](https://github.com/SvenEV/CryptoLSPDemo/tree/pathconditions) by Sven Erik Vinkemeier
