@@ -172,7 +172,7 @@ To execute the demo in vscode:
 <img src="doc/VSCodeDemo.png" width="800">
 
 ## Run Emacs Demo
-1. copy the following lines
+1. Copy the following lines to ``.emacs`` file and restart emacs.
 ```
 ;; load emacs 24's package system. Add MELPA repository.
 (when (>= emacs-major-version 24)
@@ -188,6 +188,7 @@ To execute the demo in vscode:
 (add-hook 'java-mode-hook 'eglot-ensure) 
 (add-to-list 'eglot-server-programs '(java-mode . ("PATH_TO_JAVA_HOME/bin/java" "-jar" "PATH_TO/CogniCryptLSP-0.0.1.jar" "-c" "PATH_TO/config")))
 ```
+2. Open a Java file will trigger the CogniCrypt LSP server to run.
 
 **Insecure crypto warning in Emacs**
 <img src="doc/emacs.png" width="800">
