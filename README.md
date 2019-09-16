@@ -6,9 +6,11 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 - Eclipse
 - IntelliJ
 - AndroidStudio
-- Sublime Text
-- Monaco 
 - VS Code 
+- Sublime Text
+- Emacs
+- Microsoft Monaco 
+
 
 **You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git 
@@ -168,6 +170,27 @@ To execute the demo in vscode:
 	
 **Insecure crypto warning in VSCode**
 <img src="doc/VSCodeDemo.png" width="800">
+
+## Run Emacs Demo
+1. copy the following lines
+```
+;; load emacs 24's package system. Add MELPA repository.
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
+   '("melpa" . "http://melpa.milkbox.net/packages/")
+   t))
+(package-initialize)
+(package-install 'eglot)
+(require 'eglot)
+(add-hook 'java-mode-hook 'eglot-ensure) 
+(add-to-list 'eglot-server-programs '(java-mode . ("PATH_TO_JAVA_HOME/bin/java" "-jar" "PATH_TO/CogniCryptLSP-0.0.1.jar" "-c" "PATH_TO/config")))
+```
+
+**Insecure crypto warning in Emacs**
+<img src="doc/emacs.png" width="800">
 
 ## Extensions of this demo 
 [Path Conditions to Enhance Comprehension of Cryptographic Misuses](https://github.com/SvenEV/CryptoLSPDemo/tree/pathconditions) by Sven Erik Vinkemeier
