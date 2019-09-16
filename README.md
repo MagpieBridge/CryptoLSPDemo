@@ -8,8 +8,8 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 - AndroidStudio
 - VS Code 
 - Sublime Text
-- Emacs
-- Vim
+- Emacs ([Installation instructions](docs/emacs.md))
+- Vim ([Installation instructions](docs/vim.md))
 - Microsoft Monaco 
 
 
