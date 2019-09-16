@@ -208,7 +208,7 @@ call plug#end()
 
 au User lsp_setup call lsp#register_server({
         \ 'name': 'CogniCryptLSP',
-        \ 'cmd': {server_info->['/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/bin/java', '-jar', '/Users/linghuiluo/Downloads/crypto-lsp-demo-0.0.1-SNAPSHOT.jar', '-c', '/Users/linghuiluo/Downloads/config']},
+        \ 'cmd': {server_info->['PATH_TO_JAVA_HOME/bin/java', '-jar', 'PATH_TO/crypto-lsp-demo-0.0.1-SNAPSHOT.jar', '-c', 'PATH_TO/config']},
         \ 'whitelist': ['java'],
         \ })
 	
