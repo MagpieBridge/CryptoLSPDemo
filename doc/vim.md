@@ -32,13 +32,13 @@ let g:lsp_log_file = expand('~/vim-lsp.log')
 
 An example for `.vimrc` file can be downloaded from [here](https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/.vimrc)
 
-4. Open a Java File with Vim will trigger CogniCryptLSP to run. You can use [RSA.java](https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/RSA.java) to test.
+5. Open a Java File with Vim will trigger CogniCryptLSP to run. You can use [RSA.java](https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/RSA.java) to test.
 
-5. In Vim call ``:LspDocumentDiagnostics`` to display all the crypto errors. More LSP commands for Vim can be found here https://github.com/prabirshrestha/vim-lsp
+6. In Vim call ``:LspDocumentDiagnostics`` to display all the crypto errors. More LSP commands for Vim can be found here https://github.com/prabirshrestha/vim-lsp
 <img src="vimDemo.png" width="800">
 
 
-5. To rerun CogniCryptLSP in a changed Java File, simply save the file.
+7. To rerun CogniCryptLSP in a changed Java File, simply save the file.
 
 
 
