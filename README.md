@@ -9,6 +9,7 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 - VS Code 
 - Sublime Text
 - Emacs
+- Vim
 - Microsoft Monaco 
 
 
@@ -192,6 +193,33 @@ To execute the demo in vscode:
 
 **Insecure crypto warning in Emacs**
 <img src="doc/emacsDemo.png" width="800">
+
+## Run Vim Demo
+1. Install vim-plug for vim following the instructions from https://github.com/junegunn/vim-plug
+1. Copy the following lines to ``.vimrc`` file.
+```
+call plug#begin('~/.vim/plugged')
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+
+call plug#end()
+
+
+au User lsp_setup call lsp#register_server({
+        \ 'name': 'CogniCryptLSP',
+        \ 'cmd': {server_info->['/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/bin/java', '-jar', '/Users/linghuiluo/Downloads/crypto-lsp-demo-0.0.1-SNAPSHOT.jar', '-c', '/Users/linghuiluo/Downloads/config']},
+        \ 'whitelist': ['java'],
+        \ })
+	
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log') 
+```
+2. Open a Java file with vim will trigger the CogniCrypt LSP server to run.
+3. Call ``:LspDocumentDiagnostics`` to display all the crypto warnings. More LSP commands for vim can be found here https://github.com/prabirshrestha/vim-lsp
+
+**Insecure crypto warning in Vim**
+<img src="doc/vimDemo.png" width="800">
 
 ## Extensions of this demo 
 [Path Conditions to Enhance Comprehension of Cryptographic Misuses](https://github.com/SvenEV/CryptoLSPDemo/tree/pathconditions) by Sven Erik Vinkemeier
