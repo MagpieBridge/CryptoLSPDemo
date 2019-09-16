@@ -7,7 +7,7 @@
 
 
 4. Edit Vim setting file `.vimrc` by adding the following lines. 
-Change the paths `PATH_TO_JAVA_HOME/bin/java`,  `PATH_TO/crypto-lsp-demo-0.0.1-SNAPSHOT.jar`, `PATH_TO/config` to your local paths. 
+Change the paths `PATH_TO_JAVA_HOME/bin/java`,  `PATH_TO/CogniCryptLSP-0.0.1.jar`, `PATH_TO/config` to your local paths. 
 
 The following lines (1) define a vim plugin section with two plugins `async.vim` and `vim-lsp`. (2)launch the CogniCryptLSP with Java 1.8, so make sure you have Java 1.8 installed.
 
@@ -22,7 +22,7 @@ call plug#end()
 
 au User lsp_setup call lsp#register_server({
         \ 'name': 'CogniCryptLSP',
-        \ 'cmd': {server_info->['PATH_TO_JAVA_HOME/bin/java', '-jar', 'PATH_TO/crypto-lsp-demo-0.0.1-SNAPSHOT.jar', '-c', 'PATH_TO/config']},
+        \ 'cmd': {server_info->['PATH_TO_JAVA_HOME/bin/java', '-jar', 'PATH_TO/CogniCryptLSP-0.0.1.jar', '-c', 'PATH_TO/config']},
         \ 'whitelist': ['java'],
         \ })
 	
