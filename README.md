@@ -12,7 +12,7 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 - Vim ([Installation instructions](doc/vim.md))
 - Microsoft Monaco 
 
-
+## Build the Project 
 **You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git 
 - run ``gradlew build -x test``
