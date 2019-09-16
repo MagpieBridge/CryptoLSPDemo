@@ -3,7 +3,7 @@
 
 2. Download `CogniCryptLSP-0.0.1.jar` and `config.zip` from https://github.com/MagpieBridge/CryptoLSPDemo/releases, unzip `config.zip`.
 
-3. Edit [Emacs initialization file](https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html) --- `.emacs` by adding the following lines. Change the paths used in the last two lines to your local paths. 
+3. Edit [Emacs initialization file](https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html) --- `.emacs` by adding the following lines. Change the paths `PATH_TO_JAVA_HOME/bin/java`,  `PATH_TO/crypto-lsp-demo-0.0.1-SNAPSHOT.jar`, `PATH_TO/config` to your local paths. 
 
 The following lines (1)install the Emacs [eglot](https://github.com/joaotavora/eglot) LSP Client support from [MELPA](https://melpa.org/#/eglot) with Emacs the built-in package manager (You can install with the command `M-x package-install`<kbd>ENTER</kbd> `eglot` <kbd>ENTER</kbd> alternatively). (2)launch the CogniCryptLSP with Java 1.8, so make sure you have Java 1.8 installed.
 
