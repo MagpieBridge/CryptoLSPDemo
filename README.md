@@ -3,13 +3,14 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 
 
 ## Tested IDEs/Editors
+You can configure the recent release to run CogniCryptLSP in the following IDE/Editors:
 - Eclipse
 - IntelliJ
 - AndroidStudio
 - VS Code 
 - Sublime Text
-- Emacs ([Installation instructions](doc/emacs.md))
-- Vim ([Installation instructions](doc/vim.md))
+- Emacs ([Configuration instructions](doc/emacs.md))
+- Vim ([Configuration instructions](doc/vim.md))
 - Microsoft Monaco 
 
 ## Build the Project 
