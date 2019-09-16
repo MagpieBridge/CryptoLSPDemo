@@ -3,11 +3,13 @@
 
 2. Download `CogniCryptLSP-0.0.1.jar` and `config.zip` from https://github.com/MagpieBridge/CryptoLSPDemo/releases, unzip `config.zip`.
 
-3. Make sure you have intalled `vim-plug` for Vim following the instructions from https://github.com/junegunn/vim-plug.
+3. Make sure you have intalled `vim-plug` for Vim following the instructions from https://github.com/junegunn/vim-plug. Install `async.vim` and `vim-lsp` with the command `PlugInstall`.
+
 
 4. Edit Vim setting file `.vimrc` by adding the following lines. 
 Change the paths `PATH_TO_JAVA_HOME/bin/java`,  `PATH_TO/crypto-lsp-demo-0.0.1-SNAPSHOT.jar`, `PATH_TO/config` to your local paths. 
 
+The following lines (1) define a vim plugin section with two plugins `async.vim` and `vim-lsp`. (2)launch the CogniCryptLSP with Java 1.8, so make sure you have Java 1.8 installed.
 
 ```
 call plug#begin('~/.vim/plugged')
