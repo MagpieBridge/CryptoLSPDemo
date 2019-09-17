@@ -7,8 +7,8 @@ You can configure the recent release to run CogniCryptLSP in the following IDE/E
 - Eclipse
 - IntelliJ
 - AndroidStudio
-- VS Code 
-- Sublime Text
+- VS Code ([Configuration instructions](doc/vscode.md))
+- Sublime Text ([Configuration instructions](doc/sublime.md))
 - Emacs ([Configuration instructions](doc/emacs.md))
 - Vim ([Configuration instructions](doc/vim.md))
 - Microsoft Monaco 
@@ -209,7 +209,7 @@ call plug#end()
 
 au User lsp_setup call lsp#register_server({
         \ 'name': 'CogniCryptLSP',
-        \ 'cmd': {server_info->['PATH_TO_JAVA_HOME/bin/java', '-jar', 'PATH_TO/crypto-lsp-demo-0.0.1-SNAPSHOT.jar', '-c', 'PATH_TO/config']},
+        \ 'cmd': {server_info->['PATH_TO_JAVA_HOME/bin/java', '-jar', 'PATH_TO/CogniCryptLSP-0.0.1.jar', '-c', 'PATH_TO/config']},
         \ 'whitelist': ['java'],
         \ })
 	
