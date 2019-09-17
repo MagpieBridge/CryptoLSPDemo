@@ -24,13 +24,13 @@ The following lines launches the CogniCryptLSP with Java 1.8, so make sure you h
 ```
 An example for `LSP.sublime-settings` file can be downloaded from [here](https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/LSP.sublime-settings).
 
-4. Restart Sublime Text.
+5. Restart Sublime Text.
 
-5. Open a Java File in Sublime Text will trigger CogniCryptLSP to run. You can use [RSA.java](https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/RSA.java) to test.
+6. Open a Java File in Sublime Text will trigger CogniCryptLSP to run. You can use [RSA.java](https://github.com/MagpieBridge/CryptoLSPDemo/blob/master/doc/RSA.java) to test.
 
 <img src="sublimeTextDemo.png" width="800">
 
-6. To rerun CogniCryptLSP in a changed Java File, simply save the file.
+7. To rerun CogniCryptLSP in a changed Java File, simply save the file.
 
 Questions? Ask [Linghui Luo](https://github.com/linghuiluo)
 
