@@ -1,5 +1,5 @@
 # How to run CogniCryptLSP in Sublime Text?
-1. Make sure you have installed [Sublime Text](). Tested version for this tutorial is Sublime Text 3.2.1.
+1. Make sure you have installed [Sublime Text](https://www.sublimetext.com/3). Tested version for this tutorial is Sublime Text 3.2.1.
 
 2. Download `CogniCryptLSP-0.0.1.jar` and `config.zip` from https://github.com/MagpieBridge/CryptoLSPDemo/releases, unzip `config.zip`.
 
