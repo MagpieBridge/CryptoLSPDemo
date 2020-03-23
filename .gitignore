@@ -49,3 +49,25 @@ src/test/resources/DemoAllErrors/\.idea/workspace\.xml
 src/test/resources/DemoProject/target/classes/META-INF/maven/DemoProject/DemoProject/pom\.properties
 
 vscode/CogniCryptLSP-demo\.jar
+
+rebuild.bat
+
+rebuildweb.bat
+
+startminiweb.bat
+
+config.zip
+
+src/test/resources/InsecureBank/.idea/caches/build_file_checksums.ser
+
+src/test/resources/InsecureBank/.idea/caches/gradle_models.ser
+
+src/test/resources/InsecureBank/.idea/encodings.xml
+
+src/test/resources/InsecureBank/.idea/vcs.xml
+
+src/test/resources/InsecureBank/generatedlib/out.jar
+
+vscode/CogniCryptLSP-0.0.1.jar
+
+vscode/CogniCryptLSP-0.0.1.vsix
