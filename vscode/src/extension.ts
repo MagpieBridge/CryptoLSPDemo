@@ -15,9 +15,10 @@ export function activate(context: ExtensionContext) {
         debug: { command: script, args: args} //, options: { env: createDebugEnv() }
     };
     
-
+    
+/*
      //   Use this for debugging 
-    /*let serverOptions = () => {
+    let serverOptions = () => {
 		const socket = net.connect({ port: 5007 })
 		const result: StreamInfo = {
 			writer: socket,
@@ -30,8 +31,9 @@ export function activate(context: ExtensionContext) {
 					"Failed to connect to TaintBench language server. Make sure that the language server is running " +
 					"-or- configure the extension to connect via standard IO."))
 		})
-    }*
-    
+    }
+  */
+   
     let clientOptions: LanguageClientOptions = {
         documentSelector: [{ scheme: 'file', language: 'java' }],
         synchronize: {

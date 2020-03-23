@@ -61,6 +61,6 @@ public class CryptoDemoMain {
       server.addAnalysis(analysis, language);
     }
     server.launchOnStdio();
-    // server.launchOnSocketPort(5007);
+    //server.launchOnSocketPort(5007);
   }
 }
