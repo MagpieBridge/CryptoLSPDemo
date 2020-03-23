@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<magpiebridge.version>0.0.6</magpiebridge.version>
-		<irconverter.version>0.1.1</irconverter.version>
+		<irconverter.version>0.1.2</irconverter.version>
 		<flowdroid.version>2.7.1</flowdroid.version>
 		<crypto.version>2.1.1</crypto.version>
 	</properties>
