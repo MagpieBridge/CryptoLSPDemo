@@ -14,14 +14,14 @@ import crypto.analysis.errors.TypestateError;
 import crypto.reporting.ErrorMarkerListener;
 import crypto.rules.CryptSLSplitter;
 import crypto.rules.CryptSLValueConstraint;
-import de.upb.soot.jimple.basic.PositionInfo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
-import magpiebridge.converter.PositionInfoTag;
+import magpiebridge.converter.sourceinfo.StmtPositionInfo;
+import magpiebridge.converter.tags.StmtPositionInfoTag;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.Kind;
 import magpiebridge.util.SourceCodeReader;
@@ -50,7 +50,7 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
    * @param positionInfo
    * @return
    */
-  public Pair<Position, String> getRepair(AbstractError error, PositionInfo positionInfo) {
+  public Pair<Position, String> getRepair(AbstractError error, StmtPositionInfo positionInfo) {
     StringBuilder replace = new StringBuilder();
     Position pos = null;
     if (error instanceof ConstraintError) {
@@ -164,10 +164,10 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
         if (node.stmt().getUnit().isPresent()) {
           Unit n = node.stmt().getUnit().get();
           if (!n.equals(stmt)) {
-            PositionInfoTag tag = (PositionInfoTag) n.getTag("PositionInfoTag");
+            StmtPositionInfoTag tag = (StmtPositionInfoTag) n.getTag("PositionInfoTag");
             if (tag != null) {
               // just add stmt positions on the data flow path to related for now
-              Position stmtPos = tag.getPositionInfo().getStmtPosition();
+              Position stmtPos = tag.getStmtPositionInfo().getStmtPosition();
               String code = SourceCodeReader.getLinesInString(stmtPos);
               related.add(Pair.make(stmtPos, code));
             }
@@ -184,8 +184,8 @@ public class CryptoErrorReporter extends ErrorMarkerListener {
       for (Entry<SootMethod, Set<AbstractError>> e : this.errorMarkers.row(klass).entrySet()) {
         for (AbstractError error : e.getValue()) {
           Unit stmt = error.getErrorLocation().getUnit().get();
-          PositionInfo positionInfo =
-              ((PositionInfoTag) stmt.getTag("PositionInfoTag")).getPositionInfo();
+          StmtPositionInfo positionInfo =
+              ((StmtPositionInfoTag) stmt.getTag("StmtPositionInfoTag")).getStmtPositionInfo();
           // String msg =
           // String.format(
           // "%s violating CrySL rule for %s. %s",

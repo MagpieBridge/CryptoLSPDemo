@@ -15,17 +15,13 @@ You can configure the recent release to run CogniCryptLSP in the following IDE/E
 
 ## Build the Project 
 **You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
-1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git 
-- run ``gradlew build -x test``
-- run ``gradlew install -Dmaven.repo.local="path\to\your\local\m2\repository"``
-2. install CryptoAnalysis.
-- check out "master" branch from CryptoAnalysis https://github.com/MagpieBridge/CryptoAnalysis.git
-- install with  ``mvn install -DskipTests`` 
-3. check out "master" branch from MagpieBridge https://github.com/MagpieBridge/MagpieBridge.git
-- install with ``mvn install -DskipTests`` 
-4. check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git
-- install with ``mvn install -DskipTests`` 
-5. Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
+
+- Make sure you can install GitHub Maven Packages by following this instruction https://github.com/MagpieBridge/MagpieBridge/wiki/Tutorial-3.-How-To-Install-a-GitHub-Maven-Package 
+
+- Check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git, 
+- Install with ``mvn install -DskipTests`` 
+
+- Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
 
 ## Run Eclipse demo
 - install lsp4e - http://download.eclipse.org/lsp4e/releases/latest/ 

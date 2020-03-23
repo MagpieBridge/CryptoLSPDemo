@@ -1,6 +1,4 @@
 import com.ibm.wala.classLoader.Module;
-import de.upb.soot.core.SootClass;
-import de.upb.soot.frontends.java.WalaClassLoader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -8,13 +6,12 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import magpiebridge.converter.JimpleConverter;
+import magpiebridge.converter.WalaToSootIRConverter;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.IProjectService;
 import magpiebridge.core.MagpieServer;
@@ -55,7 +52,7 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
   }
 
   @Override
-  public void analyze(Collection<Module> files, MagpieServer server) {
+  public void analyze(Collection<? extends Module> files, MagpieServer server, boolean rerun) {
     String apkFile = null;
     Set<String> libPath = new HashSet<>();
     Set<String> srcPath = new HashSet<>();
@@ -122,11 +119,10 @@ public class CryptoAndroidServerAnalysis implements ServerAnalysis {
           sourceCodePath -> {
             HashSet<String> libs = new HashSet<>(libPath);
             libs.add(androidJar);
-            WalaClassLoader loader = new WalaClassLoader(sourceCodePath, libs, null);
-            List<SootClass> sootClasses = loader.getSootClasses();
-            JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
-            jimpleConverter.convertAllClasses();
+            WalaToSootIRConverter converter = new WalaToSootIRConverter(sourceCodePath, libs, null);
+            converter.convert();
           };
+
       flowDroid.setSourceCodeConsumer(sourceCodeConsumer);
       flowDroid.setCallbackFile(configPath + File.separator + "AndroidCallbacks.txt");
       flowDroid.setTaintWrapper(

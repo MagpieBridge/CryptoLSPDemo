@@ -1,24 +1,24 @@
 import com.ibm.wala.classLoader.Module;
-import de.upb.soot.core.SootClass;
-import de.upb.soot.frontends.java.WalaClassLoader;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
-import magpiebridge.converter.JimpleConverter;
+import magpiebridge.converter.WalaToSootIRConverter;
 import magpiebridge.core.AnalysisResult;
 import magpiebridge.core.IProjectService;
 import magpiebridge.core.MagpieServer;
 import magpiebridge.core.ServerAnalysis;
+import magpiebridge.core.ServerConfiguration;
+import magpiebridge.core.ToolAnalysis;
 import magpiebridge.projectservice.java.JavaProjectService;
+import org.eclipse.lsp4j.jsonrpc.messages.Either;
 import soot.PackManager;
 import soot.Transform;
 import soot.Transformer;
@@ -69,7 +69,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
   }
 
   @Override
-  public void analyze(Collection<Module> files, MagpieServer server) {
+  public void analyze(Collection<? extends Module> files, MagpieServer server, boolean rerun) {
     if (webSocketOn) {
       setClassPath(server);
       Collection<AnalysisResult> results = Collections.emptyList();
@@ -78,9 +78,9 @@ public class CryptoServerAnalysis implements ServerAnalysis {
         results = analyze(srcPath, libPath);
       } else {
 
-        if (libPath == null)
-          libPath = new HashSet<>();
-        libPath.add(System.getProperty("java.home") + File.separator + "lib" + File.separator + "jce.jar");
+        if (libPath == null) libPath = new HashSet<>();
+        libPath.add(
+            System.getProperty("java.home") + File.separator + "lib" + File.separator + "jce.jar");
         // only analyze relevant files
         LOG.info("Analyzing files , libPath " + libPath);
         results = analyze(files, libPath);
@@ -90,36 +90,41 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     } else {
       if (last != null && !last.isDone()) {
         last.cancel(false);
-        if (last.isCancelled())
-          LOG.info("Susscessfully cancelled last analysis and start new");
+        if (last.isCancelled()) LOG.info("Susscessfully cancelled last analysis and start new");
       }
-      Future<?> future = exeService.submit(new Runnable() {
-        @Override
-        public void run() {
-          setClassPath(server);
-          Collection<AnalysisResult> results = Collections.emptyList();
-          if (srcPath != null) {
-            // do whole program analysis
-            results = analyze(srcPath, libPath);
-          } else {
+      Future<?> future =
+          exeService.submit(
+              new Runnable() {
+                @Override
+                public void run() {
+                  setClassPath(server);
+                  Collection<AnalysisResult> results = Collections.emptyList();
+                  if (srcPath != null) {
+                    // do whole program analysis
+                    results = analyze(srcPath, libPath);
+                  } else {
 
-            if (libPath == null)
-              libPath = new HashSet<>();
-            libPath.add(System.getProperty("java.home") + File.separator + "lib" + File.separator + "jce.jar");
-            // only analyze relevant files
-            LOG.info("Analyzing files , libPath " + libPath);
-            results = analyze(files, libPath);
-            LOG.info("Results: " + results);
-          }
-          server.consume(results, source());
-        }
-      });
+                    if (libPath == null) libPath = new HashSet<>();
+                    libPath.add(
+                        System.getProperty("java.home")
+                            + File.separator
+                            + "lib"
+                            + File.separator
+                            + "jce.jar");
+                    // only analyze relevant files
+                    LOG.info("Analyzing files , libPath " + libPath);
+                    results = analyze(files, libPath);
+                    LOG.info("Results: " + results);
+                  }
+                  server.consume(results, source());
+                }
+              });
       last = future;
-
     }
   }
 
-  public Collection<AnalysisResult> analyze(Collection<? extends Module> files, Set<String> libPath) {
+  public Collection<AnalysisResult> analyze(
+      Collection<? extends Module> files, Set<String> libPath) {
     CryptoTransformer transformer = new CryptoTransformer(ruleDirPath, false);
     loadSourceCode(files, libPath);
     runSootPacks(transformer);
@@ -129,28 +134,40 @@ public class CryptoServerAnalysis implements ServerAnalysis {
 
   public Collection<AnalysisResult> analyze(Set<String> srcPath, Set<String> libPath) {
     CryptoTransformer transformer = new CryptoTransformer(ruleDirPath, false);
-    WalaClassLoader loader = new WalaClassLoader(srcPath, libPath, null);
-    List<SootClass> sootClasses = loader.getSootClasses();
-    JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
-    jimpleConverter.convertAllClasses();
+    WalaToSootIRConverter converter = new WalaToSootIRConverter(srcPath, libPath, null);
+    converter.convert();
     runSootPacks(transformer);
     Collection<AnalysisResult> results = transformer.getAnalysisResults();
     return results;
   }
 
   private void loadSourceCode(Collection<? extends Module> files, Set<String> libPath) {
-    // use WALA source-code front end to load classes
-    WalaClassLoader loader = new WalaClassLoader(files, libPath);
-    List<SootClass> sootClasses = loader.getSootClasses();
-    LOG.info("WALA loaded files");
-    JimpleConverter jimpleConverter = new JimpleConverter(sootClasses);
-    LOG.info("Jimple converted");
-    jimpleConverter.convertAllClasses();
+    WalaToSootIRConverter converter = new WalaToSootIRConverter(files, libPath);
+    converter.convert();
   }
 
   private void runSootPacks(Transformer t) {
     PackManager.v().getPack("wjtp").add(new Transform("wjtp.cognicrypt", t));
     PackManager.v().getPack("cg").apply();
     PackManager.v().getPack("wjtp").apply();
+  }
+
+  /**
+   * @return a server which runs the {@link CryptoServerAnalysis}. This is used for websocket
+   *     server.
+   */
+  public static MagpieServer runOnServer() {
+    // you need to configure JVM option for tomcat at first
+    // for windows, add this line 'set JAVA_OPTS="-Duser.project=PATH\TO\crypto-lsp-demo"' to
+    // tomcat\bin\catalina.bat
+    // for linux, add this line 'JAVA_OPTS="-Duser.project=PATH/TO/crypto-lsp-demo"' to
+    // tomcat\bin\catalina.sh
+    String userProject = System.getProperty("user.project");
+    String ruleDirPath = userProject + File.separator + "config" + File.separator + "JCA_rules";
+    MagpieServer server = new MagpieServer(new ServerConfiguration());
+    Either<ServerAnalysis, ToolAnalysis> analysis =
+        Either.forLeft(new CryptoServerAnalysis(ruleDirPath));
+    server.addAnalysis(analysis, "java");
+    return server;
   }
 }

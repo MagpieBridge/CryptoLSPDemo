@@ -13,8 +13,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<magpiebridge.version>0.0.1-SNAPSHOT</magpiebridge.version>
-		<futuresoot.version>4.0.0.3</futuresoot.version>
+		<magpiebridge.version>0.0.6</magpiebridge.version>
+		<irconverter.version>0.1.1</irconverter.version>
 		<flowdroid.version>2.7.1</flowdroid.version>
 		<crypto.version>2.1.1</crypto.version>
 	</properties>
@@ -43,16 +43,16 @@
 			<artifactId>magpiebridge</artifactId>
 			<version>${magpiebridge.version}</version>
 		</dependency>
+		<!-- IRConverter -->
+		<dependency>
+			<groupId>magpiebridge</groupId>
+			<artifactId>irconverter</artifactId>
+			<version>${irconverter.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
-		</dependency>
-		<!-- futuresoot -->
-		<dependency>
-			<groupId>de.upb</groupId>
-			<artifactId>Soot</artifactId>
-			<version>${futuresoot.version}</version>
 		</dependency>
 		<!-- CrytoAnalysis -->
 		<dependency>
@@ -65,22 +65,6 @@
 					<artifactId>runtime</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<!-- eclipse lsp4j websocket -->
-		<dependency>
-			<groupId>org.eclipse.lsp4j</groupId>
-			<artifactId>org.eclipse.lsp4j.websockets</artifactId>
-			<version>0.6.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.platform</groupId>
-			<artifactId>org.eclipse.core.runtime</artifactId>
-			<version>3.15.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jdt</groupId>
-			<artifactId>org.eclipse.jdt.core</artifactId>
-			<version>3.15.0</version>
 		</dependency>
 		<!-- flowdroid(used for Android) -->
 		<dependency>
@@ -174,9 +158,9 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>wala</id>
-			<name>wala snapshots</name>
-			<url>https://soot-build.cs.uni-paderborn.de/nexus/repository/wala/</url>
+			<id>github</id>
+			<name>GitHub MagpieBridge Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/MagpieBridge/MagpieBridge</url>
 		</repository>
 		<repository>
 			<id>soot-snapshot</id>

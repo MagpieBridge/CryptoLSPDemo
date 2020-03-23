@@ -1,7 +1,9 @@
 import java.io.File;
 import magpiebridge.core.IProjectService;
 import magpiebridge.core.MagpieServer;
+import magpiebridge.core.ServerAnalysis;
 import magpiebridge.core.ServerConfiguration;
+import magpiebridge.core.ToolAnalysis;
 import magpiebridge.projectservice.java.AndroidProjectService;
 import magpiebridge.projectservice.java.JavaProjectService;
 import org.apache.commons.cli.CommandLine;
@@ -10,6 +12,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.eclipse.lsp4j.jsonrpc.messages.Either;
 
 public class CryptoDemoMain {
   public static void main(String... args) throws ParseException {
@@ -45,15 +48,19 @@ public class CryptoDemoMain {
     if (!android) {
       IProjectService javaProjectService = new JavaProjectService();
       server.addProjectService(language, javaProjectService);
-      server.addAnalysis(language, new CryptoServerAnalysis(ruleDirPath));
+      Either<ServerAnalysis, ToolAnalysis> analysis =
+          Either.forLeft(new CryptoServerAnalysis(ruleDirPath));
+      server.addAnalysis(analysis, language);
     } else {
       IProjectService androidProjectService = new AndroidProjectService();
       server.addProjectService(language, androidProjectService);
       String androidPlatform = cmd.getOptionValue("p");
-      server.addAnalysis(
-          language,
-          new CryptoAndroidServerAnalysis(ruleDirPath, flowdroidConfigPath, androidPlatform));
+      Either<ServerAnalysis, ToolAnalysis> analysis =
+          Either.forLeft(
+              new CryptoAndroidServerAnalysis(ruleDirPath, flowdroidConfigPath, androidPlatform));
+      server.addAnalysis(analysis, language);
     }
     server.launchOnStdio();
+    // server.launchOnSocketPort(5007);
   }
 }
