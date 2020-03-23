@@ -1,4 +1,4 @@
-# CryptoLSPDemo[![Build Status](https://travis-ci.com/MagpieBridge/CryptoLSPDemo.svg?branch=master)](https://travis-ci.com/MagpieBridge/CryptoLSPDemo)
+# CryptoLSPDemo
 This project demonstrates integrating CogniCrypt into different IDEs with [MagpieBridge](https://github.com/MagpieBridge/MagpieBridge).
 
 
