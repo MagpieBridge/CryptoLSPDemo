@@ -1,0 +1,14 @@
+// Settings in here override those in "LSP/LSP.sublime-settings",
+
+{
+  "clients": {
+    "cognicrypt": {
+    "command": ["/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/bin/java", "-jar", "/Users/linghuiluo/Downloads/CogniCryptLSP-0.0.1.jar", "-c", "/Users/linghuiluo/Downloads/config"], 
+    "enabled": true,
+    "languageId": "java",
+    "scopes": ["source.java"],
+    "syntaxes": ["Packages/Java/Java.sublime-syntax"], 
+    }
+  }
+
+}

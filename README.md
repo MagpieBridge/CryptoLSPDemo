@@ -3,13 +3,17 @@ This project demonstrates integrating CogniCrypt into different IDEs with [Magpi
 
 
 ## Tested IDEs/Editors
-- Eclipse
-- IntelliJ
+You can configure the recent release to run CogniCryptLSP in the following IDE/Editors:
+- Eclipse 
+- IntelliJ 
 - AndroidStudio
-- Sublime Text
-- Monaco 
-- VS Code 
+- Microsoft Monaco 
+- VS Code ([Configuration instructions](doc/vscode.md))
+- Sublime Text ([Configuration instructions](doc/sublime.md))
+- Emacs ([Configuration instructions](doc/emacs.md))
+- Vim ([Configuration instructions](doc/vim.md))
 
+## Build the Project 
 **You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
 1. check out "websockets" branch from lsp4j https://github.com/MagpieBridge/lsp4j.git 
 - run ``gradlew build -x test``
@@ -168,6 +172,55 @@ To execute the demo in vscode:
 	
 **Insecure crypto warning in VSCode**
 <img src="doc/VSCodeDemo.png" width="800">
+
+## Run Emacs Demo
+1. Copy the following lines to ``.emacs`` file and restart emacs.
+```
+;; load emacs 24's package system. Add MELPA repository.
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
+   '("melpa" . "http://melpa.milkbox.net/packages/")
+   t))
+(package-initialize)
+(package-install 'eglot)
+(require 'eglot)
+(add-hook 'java-mode-hook 'eglot-ensure) 
+(add-to-list 'eglot-server-programs '(java-mode . ("PATH_TO_JAVA_HOME/bin/java" "-jar" "PATH_TO/CogniCryptLSP-0.0.1.jar" "-c" "PATH_TO/config")))
+```
+2. Open a Java file will trigger the CogniCrypt LSP server to run.
+
+**Insecure crypto warning in Emacs**
+<img src="doc/emacsDemo.png" width="800">
+
+## Run Vim Demo
+1. Install vim-plug for vim following the instructions from https://github.com/junegunn/vim-plug
+1. Copy the following lines to ``.vimrc`` file.
+```
+call plug#begin('~/.vim/plugged')
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+
+call plug#end()
+
+
+au User lsp_setup call lsp#register_server({
+        \ 'name': 'CogniCryptLSP',
+        \ 'cmd': {server_info->['PATH_TO_JAVA_HOME/bin/java', '-jar', 'PATH_TO/CogniCryptLSP-0.0.1.jar', '-c', 'PATH_TO/config']},
+        \ 'whitelist': ['java'],
+        \ })
+	
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log') 
+```
+2. Open a Java file with vim will trigger the CogniCrypt LSP server to run.
+3. Call ``:LspDocumentDiagnostics`` to display all the crypto warnings. More LSP commands for vim can be found here https://github.com/prabirshrestha/vim-lsp
+
+**Insecure crypto warning in Vim**
+<img src="doc/vimDemo.png" width="800">
 
 ## Extensions of this demo 
 [Path Conditions to Enhance Comprehension of Cryptographic Misuses](https://github.com/SvenEV/CryptoLSPDemo/tree/pathconditions) by Sven Erik Vinkemeier
