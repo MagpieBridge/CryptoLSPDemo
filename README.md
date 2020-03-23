@@ -14,8 +14,6 @@ You can configure the recent release to run CogniCryptLSP in the following IDE/E
 - Vim ([Configuration instructions](doc/vim.md))
 
 ## Build the Project 
-**You can skip step 1 and 2 to get the jars from the mvn branch https://github.com/MagpieBridge/CryptoLSPDemo/tree/mvn/repository**
-
 - Make sure you can install GitHub Maven Packages by following this instruction https://github.com/MagpieBridge/MagpieBridge/wiki/Tutorial-3.-How-To-Install-a-GitHub-Maven-Package 
 
 - Check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git, 
