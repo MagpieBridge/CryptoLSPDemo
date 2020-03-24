@@ -82,7 +82,7 @@ public class CryptoServerAnalysis implements ServerAnalysis {
         libPath.add(
             System.getProperty("java.home") + File.separator + "lib" + File.separator + "jce.jar");
         // only analyze relevant files
-        LOG.info("Analyzing files , libPath " + libPath);
+        LOG.info("Analyzing files "+ files +"\nlibPath " + libPath);
         results = analyze(files, libPath);
         LOG.info("Results: " + results);
       }
@@ -165,8 +165,10 @@ public class CryptoServerAnalysis implements ServerAnalysis {
     String userProject = System.getProperty("user.project");
     String ruleDirPath = userProject + File.separator + "config" + File.separator + "JCA_rules";
     MagpieServer server = new MagpieServer(new ServerConfiguration());
+    CryptoServerAnalysis c=new CryptoServerAnalysis(ruleDirPath);
+    c.webSocketOn=true;
     Either<ServerAnalysis, ToolAnalysis> analysis =
-        Either.forLeft(new CryptoServerAnalysis(ruleDirPath));
+        Either.forLeft(c);
     server.addAnalysis(analysis, "java");
     return server;
   }

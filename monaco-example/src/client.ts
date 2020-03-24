@@ -30,6 +30,9 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
 
 public class RSA {
   private PublicKey publicKey;
@@ -60,6 +63,19 @@ public class RSA {
     return isVerfied;
   } 
   
+  public static void main(String... args) {
+    try {
+      RSA rsa = new RSA();
+      byte[] signatures = rsa.sign("some important message");
+      rsa.verify("some important message", signatures);
+    } catch (InvalidKeyException e) {
+      e.printStackTrace();
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    } catch (SignatureException e) {
+      e.printStackTrace();
+    }
+  }
 }
 `
 
