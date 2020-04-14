@@ -17,7 +17,8 @@ You can configure the recent release to run CogniCryptLSP in the following IDE/E
 - Make sure you can install GitHub Maven Packages by following this instruction https://github.com/MagpieBridge/MagpieBridge/wiki/Tutorial-3.-How-To-Install-a-GitHub-Maven-Package 
 
 - Check out "master" branch from CryptoLSPDemo https://github.com/MagpieBridge/CryptoLSPDemo.git, 
-- Adapt the `CryptoAnalysis` dependency version in pom.xml to the one you want to use.
+- Adapt the `CryptoAnalysis` dependency version in pom.xml to the one you want to use. For the demo, we used the CryptoAnalysis jar in  `CryptoAnalysis-2.1.1.zip` (unzip and install it manually to your local m2 repository) under https://github.com/MagpieBridge/CryptoLSPDemo/releases.
+
 - Install with ``mvn install -DskipTests`` 
 
 - Configure ``crypto-lsp-demo-0.0.1-SNAPSHOT.jar`` als language server in IDEs/editors (Eclipse, IntellIJ)
